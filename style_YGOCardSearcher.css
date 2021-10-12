@@ -1,4 +1,64 @@
 body {
     background: rgb(58,238,203);
-    background: radial-gradient(circle, rgba(58,238,203,1) 0%, rgba(70,122,252,1) 100%);
+    background: url('img/logo2.png') no-repeat center, radial-gradient(circle, rgba(58,238,203,1) 0%, rgba(70,122,252,1) 100%);
+    background-attachment: fixed;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#logo {
+    background: url('img/puzzle.png') no-repeat center;
+    size: 80%;
+}
+
+#main-searcher {
+    background-color: #0cbaba;
+    background-image: linear-gradient(315deg, #0cbaba 0%, #a809a3 74%);
+}
+
+input {
+    font-size: 12px;
+    border: 2px solid white;
+}
+
+.results {
+    text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+    color: white;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.fas {
+    color: white;
+    font-size: 1.5em;
+    text-shadow: 0 1px 0 #ccc, 
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+
+}
+
+.fa-th:hover, .fa-search:hover, .fa-sort-amount-down:hover {
+    color: lightblue;
+    scale: 1.6;
+    transition: scale 0.5s, color 0.5s;
+}
+
+#division {
+    background-color: white;
+    height: 2px;
+    margin: 0px;
+    border: 1px solid black;
 }
