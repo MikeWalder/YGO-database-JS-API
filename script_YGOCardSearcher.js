@@ -21,7 +21,7 @@ inputValue.addEventListener('keyup', function(e) {
                 }
 
                 // Affichage des images de cartes correspondant à la recherche entrée
-                for(let i=1; i<=`${data.data.length}`; i++) {
+                for(let i=0; i<`${data.data.length}`; i++) {
                     document.querySelector(`#a${i}`).src = data.data[i].card_images[0].image_url;
                 }
             })
