@@ -34,6 +34,8 @@ input {
     margin: 0px;
 }
 
+/* ----- Icônes de la navbar ----- */
+
 .fas {
     color: white;
     font-size: 1.5em;
@@ -58,6 +60,8 @@ input {
     transition: scale 0.5s, color 0.5s;
 }
 
+/* ----- Barre horizontale délimitant la navbar du reste de la page ----- */
+
 #division {
     background-color: white;
     height: 2px;
@@ -65,8 +69,45 @@ input {
     border: 1px solid black;
 }
 
+/* ----- Gestion des images et du hover de chacune d'elles ----- */
+
 .img-thumbnail {
     padding: 0px;
     margin: 0;
     height: 230px;
+}
+
+.hovertexter {
+    position: relative;
+}
+
+.hoverCardTitle, .hoverCardDescription {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    text-align: center;
+    color: white;
+}
+
+.hoverCardTitle {
+    padding-top: 4%;
+    top: 0px;
+    height: 17%;
+    font-size: 12px;
+}
+
+.hoverCardDescription {
+    padding-top: 10%;
+    bottom: 0px;
+    height: 28%;
+    font-size: 11px;
+}
+
+.hovertexter:hover .hoverCardTitle, .hovertexter:hover .hoverCardDescription {
+    visibility: visible;
+    opacity: 1;
 }
