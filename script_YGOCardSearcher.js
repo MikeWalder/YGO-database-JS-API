@@ -2,6 +2,28 @@ const dataOrder = document.querySelector('#dataOrder');
 const dataResult = document.querySelector('#dataResult');
 const bgDark = document.querySelector('.bg-dark');
 
+const classCards = document.querySelector('#classCards');
+const cardName = [...document.querySelectorAll('.cardName')];
+let orderTri = '';
+/* classCards.addEventListener('click', function() {
+    alert('tri des cartes en cours');
+}) */
+
+function recupOrderTri(orderTri) {
+    return orderTri;
+}
+
+console.log(cardName);
+
+    for(let cardN = 0; cardN < cardName.length; cardN++) {
+        cardName[cardN].addEventListener('click', function() {
+            orderTri = this.value;
+            console.log(orderTri);
+            console.log(typeof(orderTri));
+        })
+    }
+
+const triage = recupOrderTri(orderTri);
 
 const inputValue = document.querySelector('#inputValue');
 inputValue.addEventListener('keyup', function(e) {

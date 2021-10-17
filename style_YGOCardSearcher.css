@@ -111,3 +111,28 @@ input {
     visibility: visible;
     opacity: 1;
 }
+
+
+
+.modal-body > label {
+    display: block;
+    float: left;
+    width: 120px;
+}
+
+/* .modal-body > button {
+    display: block;
+    float: right; 
+    width: 130px;
+} */
+
+#cN > button, #cLR > button, #cATK > button, #cDEF > button {
+    font-size: 15px;
+    width: 120px;
+    min-width: 110px;
+    padding: 0px;
+}
+
+.active {
+    color: yellowgreen;
+}
