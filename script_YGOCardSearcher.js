@@ -4,9 +4,39 @@ const bgDark = document.querySelector('.bg-dark');
 
 const classCards = document.querySelector('#classCards');
 const cardTri = [...document.querySelectorAll('.modal-body div > button')];
+
 const labelTri = [...document.querySelectorAll('.modal-body > label')];
+
+labelTri[7] = labelTri[6] = labelTri[3];
+labelTri[5] = labelTri[4] = labelTri[2];
+labelTri[3] = labelTri[2] = labelTri[1];
+labelTri[1] = labelTri[0] = labelTri[0];
+
 let orderTri = '';
 
+const typeOfCards = [...document.querySelectorAll('.tri > button')];
+let typeCard = '';
+
+//console.log(cardTri);
+
+for(let ak = 0; ak < typeOfCards.length; ak++) {
+    typeOfCards[ak].addEventListener('click', function() {
+        typeCard = this.value;
+        console.log(typeCard);
+
+        let nb=inputValue.value;
+        const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}&language=fr&fname=${nb}`;
+        console.log(urlName);
+        fetch(urlName).then( (response) => {
+            response.json().then( (data) => {
+                setTimeout(searchCardsData(data), 1500);
+            })
+        }).catch(error => {
+            console.log('Erreur : '+err);
+        })
+
+    })
+}
 
 for(let cardN = 0; cardN < cardTri.length; cardN++) {
     cardTri[cardN].addEventListener('focus', function() {
@@ -15,11 +45,11 @@ for(let cardN = 0; cardN < cardTri.length; cardN++) {
         console.log(orderTri);
 
         let nb=inputValue.value;
-        const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${orderTri}&language=fr&fname=${nb}`;
+        const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}&language=fr&fname=${nb}`;
         console.log(urlName);
         fetch(urlName).then( (response) => {
             response.json().then( (data) => {
-                searchCardsData(data);
+                setTimeout(searchCardsData(data), 2000);
             })
         }).catch(error => {
             console.log('Erreur : '+err);
@@ -28,7 +58,6 @@ for(let cardN = 0; cardN < cardTri.length; cardN++) {
 }
 
 
-/* const triage = recupOrderTri(orderTri); */
 
 const inputValue = document.querySelector('#inputValue');
 inputValue.addEventListener('keyup', function(e) {
@@ -37,17 +66,13 @@ inputValue.addEventListener('keyup', function(e) {
         let nb=inputValue.value;  // Récupération de la valeur du champ texte
         console.log(nb);
         //inputValue.value = "";  // Effacement du contenu de l'input text
-        const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${orderTri}&language=fr&fname=${nb}`;
-        //console.log(urlName);
+        const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}&language=fr&fname=${nb}`;
+        console.log(urlName);
         fetch(urlName).then( (response) => {
             if(response.status >= 200 && response.status <= 299) {
                 response.json().then((data) => {
 
-                    // console.log(data);
-                    // console.log(response.status);
-
-                    // Effacement de toute les cartes de la précédente recherche
-                    searchCardsData(data);
+                    setTimeout(searchCardsData(data), 1500);
                     
                 })
             } else {
@@ -56,8 +81,6 @@ inputValue.addEventListener('keyup', function(e) {
                     bgDark.removeChild(bgDark.lastChild);
                 }
             }
-        }).then( (response) => {
-            
         })
         .catch(err => {
             console.log('Erreur : '+err);
@@ -114,7 +137,7 @@ function searchCardsData(data) {
         }
 
         if(data.data[k]) { // si l'indice du tableau JSON contient des données
-            document.querySelector(`#a${k}`).src = data.data[k].card_images[0].image_url;
+            document.querySelector(`#a${k}`).src = data.data[k].card_images[0].image_url_small;
             document.querySelector(`#a${k}`).title = data.data[k].name;
             document.querySelector(`#a${k}`).alt = data.data[k].name;
             

@@ -25,6 +25,7 @@
         <div class="container-fluid" id="main-searcher">
             <div class="row">
                 <div class="d-sm-none d-sm-block col-sm-2" id="logo">
+                   
                 </div>
                 <div class="col-xs-12 col-sm-9">
                     <div class="row">
@@ -37,7 +38,7 @@
                             <div class="row text-center">
                                 <div class="col-6">
                                     <i class="fas fa-sort-amount-down fa-lg mt-2" 
-                                    id="classCards" data-toggle="modal" data-target="#exampleModal"></i>
+                                    id="classCards" data-toggle="modal" data-target="#exampleModal" title="Trier"></i>
                                 </div>
                                 <div class="col-4">
                                     <i class="fas fa-search fa-lg mt-2"></i>
@@ -53,7 +54,7 @@
                         <div class="col-3 mt-2">
                             <div class="row text-center">
                                 <div class="col-6">
-                                    <i class="fas fa-th fa-lg"></i>
+                                    <i class="fas fa-th fa-lg" title="Affichage"></i>
                                 </div>
                                 <div class="col-4">
                                     
@@ -67,18 +68,26 @@
         </div>
         <hr class="division">
         <div class="container-fluid bg-lightdark text-white">
-            <div class="row text-center">
-                <div class="col-3">
-                    Monstre
+            <div class="row text-center" id="typeCartes">
+                <div class="col-2 tri">
+                    <button type="button" class="btn btn-outline-primary" value="type=pendulum%20effect%20monster,pendulum%20normal%20monster,normal%20monster,effect%20monster,normal%20monster,tuner%20monster,ritual%20monster,ritual%20effect%20monster,spirit%20monster,toon%20monster">
+                        Monstres Main
                 </div>
-                <div class="col-3">
-                    Tous
+                <div class="col-2 tri">
+                    <button type="button" class="btn btn-outline-primary" value="type=fusion%20monster,link%20monster,pendulum%20effect%20fusion%20monster,synchro%20monster,synchro%20pendulum%20effect%20monster,synchro%20tuner%20monster,xyz%20monster,xyz%20pendulum%20effect%20monster">
+                        Monstres Side
                 </div>
-                <div class="col-3">
-                    Magie
+                <div class="col-2 tri">
+                    <button type="button" class="btn btn-outline-primary" value="">Tous</button>
                 </div>
-                <div class="col-3">
-                    Piège
+                <div class="col-2 tri">
+                    <button type="button" class="btn btn-outline-primary" value="type=spell%20card">Magie</button>
+                </div>
+                <div class="col-2 tri">
+                    <button type="button" class="btn btn-outline-primary" value="type=trap%20card">Piège</button>
+                </div>
+                <div class="col-2 tri">
+                    <button type="button" class="btn btn-outline-primary" value="type=skill%20card">Skill</button>
                 </div>
             </div>
         </div>
@@ -100,16 +109,16 @@
             </div>
             <br>
             <div class="modal-body align-middle">
-                <label for="cN">Nom carte </label><div id="cN"><button type="button" class="btn btn-info cardName" value="&sort=name&sortorder=asc" aria-pressed="true">A - Z</button>
+                <label>Nom carte </label><div id="cN"><button type="button" class="btn btn-info cardName" value="&sort=name&sortorder=asc" aria-pressed="true">A - Z</button>
                 <button type="button" class="btn btn-info cardName" value="&sort=name&sortorder=desc">Z - A</button></div><br>
 
-                <label for="cLR">Niveau/Rang </label><div id="cLR"><button type="button" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=asc">Ordre croissant</button>
+                <label>Niveau/Rang </label><div id="cLR"><button type="button" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=asc">Ordre croissant</button>
                 <button type="button" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=desc">Ordre décroissant</button></div><br>
                 
-                <label for="cATK">ATK </label><div id="cATK"><button type="button" class="btn btn-info cardAtk" value="&sort=atk&sortorder=asc">Ordre croissant</button>
+                <label>ATK </label><div id="cATK"><button type="button" class="btn btn-info cardAtk" value="&sort=atk&sortorder=asc">Ordre croissant</button>
                 <button type="button" class="btn btn-info cardAtk" value="&sort=atk&sortorder=desc">Ordre décroissant</button></div><br>
                 
-                <label for="cDEF">DEF </label><div id="cDEF"><button type="button" class="btn btn-info cardDef" value="&sort=def&sortorder=asc">Ordre croissant</button>
+                <label>DEF </label><div id="cDEF"><button type="button" class="btn btn-info cardDef" value="&sort=def&sortorder=asc">Ordre croissant</button>
                 <button type="button" class="btn btn-info cardDef" value="&sort=def&sortorder=desc">Ordre décroissant</button></div><br>
                 
             </div>
