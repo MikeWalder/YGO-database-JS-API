@@ -40,17 +40,17 @@ input {
     color: white;
     font-size: 1.5em;
     text-shadow: 0 1px 0 #ccc, 
-               0 2px 0 #c9c9c9,
-               0 3px 0 #bbb,
-               0 4px 0 #b9b9b9,
-               0 5px 0 #aaa,
-               0 6px 1px rgba(0,0,0,.1),
-               0 0 5px rgba(0,0,0,.1),
-               0 1px 3px rgba(0,0,0,.3),
-               0 3px 5px rgba(0,0,0,.2),
-               0 5px 10px rgba(0,0,0,.25),
-               0 10px 10px rgba(0,0,0,.2),
-               0 20px 20px rgba(0,0,0,.15);
+            0 2px 0 #c9c9c9,
+            0 3px 0 #bbb,
+            0 4px 0 #b9b9b9,
+            0 5px 0 #aaa,
+            0 6px 1px rgba(0,0,0,.1),
+            0 0 5px rgba(0,0,0,.1),
+            0 1px 3px rgba(0,0,0,.3),
+            0 3px 5px rgba(0,0,0,.2),
+            0 5px 10px rgba(0,0,0,.25),
+            0 10px 10px rgba(0,0,0,.2),
+            0 20px 20px rgba(0,0,0,.15);
 
 }
 
@@ -77,7 +77,7 @@ input {
     color: yellow;
     background-color: rgb(44, 47, 172);
     text-shadow: 0 1px 0 #ccc, 
-               0 2px 0 #c9c9c9;
+            0 2px 0 #c9c9c9;
     transition: color 0.4s, text-shadow 0.4s, background-color 0.4s;
     cursor: default;
 }
@@ -93,12 +93,11 @@ input {
     color: yellow;
 }
 
-/* ----- Gestion des images et du hover de chacune d'elles ----- */
+/* ----- Gestion des images de chaque résultat retourné et du hover ----- */
 
-.img-thumbnail {
-    padding: 0px;
-    margin: 0;
-    height: 230px;
+.hovertexter > img:hover {
+    transform: scale(1.07);
+    transition: transform 0.4s;
 }
 
 .hovertexter {
@@ -112,7 +111,6 @@ input {
     background-color: rgba(0, 0, 0, 0.5);
     visibility: none;
     opacity: 0;
-    transition: opacity 0.3s;
     text-align: center;
     color: white;
 }
@@ -134,6 +132,7 @@ input {
 .hovertexter:hover .hoverCardTitle, .hovertexter:hover .hoverCardDescription {
     visibility: visible;
     opacity: 1;
+    transition: opacity 0.4s;
 }
 
 /* ------ Modal treatment section ------ */
@@ -155,4 +154,9 @@ input {
     width: 120px;
     min-width: 110px;
     padding: 10px 0px;
+}
+
+
+#cardImgDesc {
+    width: 100%;
 }
