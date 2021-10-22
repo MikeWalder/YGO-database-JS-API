@@ -1,24 +1,28 @@
+const inputValue = document.querySelector('#inputValue');
+
 const dataOrder = document.querySelector('#dataOrder');
 const dataResult = document.querySelector('#dataResult');
 const bgDark = document.querySelector('.bg-transparent');
 
 const classCards = document.querySelector('#classCards');
-const cardTri = [...document.querySelectorAll('.modal-body div > button')];
 
 const labelTri = [...document.querySelectorAll('.modal-body > label')];
 
-labelTri[7] = labelTri[6] = labelTri[3];
-labelTri[5] = labelTri[4] = labelTri[2];
-labelTri[3] = labelTri[2] = labelTri[1];
-labelTri[1] = labelTri[0] = labelTri[0];
+for(let lb = (labelTri.length - 1); lb > 0; lb--){
+    labelTri[2*lb+1] = labelTri[2*lb] = labelTri[lb]; 
+}
 
-let orderTri = '';
 let cardDescription = '';
 
-const typeOfCards = [...document.querySelectorAll('.tri > button')];
-let typeCard = '';
+/* ----- Réinitialisation de l'input texte au clic de l'icône scope ----- */
+const iconeScope = document.querySelector('.fa-search');
+iconeScope.addEventListener('click', function() {
+    inputValue.value = '';
+})
 
 /* ----- Classement par type de carte ----- */
+const typeOfCards = [...document.querySelectorAll('.tri > button')];
+let typeCard = '';
 for(let ak = 0; ak < typeOfCards.length; ak++) {
     typeOfCards[ak].addEventListener('click', function() {
         typeCard = this.value;
@@ -27,6 +31,8 @@ for(let ak = 0; ak < typeOfCards.length; ak++) {
 }
 
 /* ----- Classement dans le modal ----- */
+const cardTri = [...document.querySelectorAll('.modal-body div > button')];
+let orderTri = '';
 for(let cardN = 0; cardN < cardTri.length; cardN++) {
     cardTri[cardN].addEventListener('focus', function() {
         orderTri = this.value;
@@ -36,36 +42,36 @@ for(let cardN = 0; cardN < cardTri.length; cardN++) {
 }
 
 /* ----- Gestion de l'input de recherche de cartes ----- */
-const inputValue = document.querySelector('#inputValue');
 inputValue.addEventListener('keyup', function(e) {
     e.preventDefault();
-    if(e.keyCode==13){
+    if(e.keyCode==13){ // appui sur la touche entrée pour lancer la requête
         gestionUrletStatus();
-        // setTimeout(cardDetail(data), 500);
     }
 }, true);
 
 
 
 
-/* ----------------------- */
-/* ______ Fonctions ______ */
+/* ------------------------------------------- */
+/* ________________ Fonctions ________________ */
 
 function searchCardsData(data) {
+    // Initialisation des variables
+    let tabRoww = [];
+    let disp = '';
+    
+    // Effacement du chemin de chaque image  
+    let srcCards = [...document.querySelectorAll('.bg-transparent img')];
+    for(let i=0; i<srcCards.length; i++) {
+        document.querySelector(`#a${i}`).src = '';
+    }
+
+    // Affichage du nombre de résultats dans la navbar
     if(data.data.length) {
         dataResult.innerText = `Résultats : ${data.data.length}`;
     } else {
         dataResult.innerText = `Résultats : aucun`;
     }
-
-    let srcCards = [...document.querySelectorAll('.bg-transparent img')];
-
-    for(let i=0; i<srcCards.length; i++) {
-        document.querySelector(`#a${i}`).src = '';
-    }
-
-    let tabRoww = [];
-    let disp = '';
 
     // Suppression de tous les éléments enfants de la liste des résultats lors de la précédente recherche
     while (bgDark.firstChild) {
@@ -75,9 +81,9 @@ function searchCardsData(data) {
     // Insertion automatique de chaque élément de la liste répondant à la recherche
     for(let k=0; k<`${data.data.length}`; k++) {
 
-        const colContainer = `<div class="col-xs-4 col-lg-2 p-0 hovertexter">`;
+        const colContainer = `<div class="col-4 col-lg-2 p-0 hovertexter">`;
         disp = '';
-        if(k%6==0) {
+        if(k%6==0) { // Quand la colonne est remplie en ajouter une
             
             const roww = document.createElement('div');
             roww.classList.add('row');
@@ -85,7 +91,7 @@ function searchCardsData(data) {
             tabRoww[k] = roww;
             bgDark.appendChild(tabRoww[k]);
             
-            for(let j=0; j<6; j++) {
+            for(let j=0; j<6; j++) { // Remplissage de chaque colonne
                 disp += colContainer;
                 disp += `<img class="card-img-top" id="a${k + j}" value="${data.data[k].id}">`;
                 disp += `<div class="" id="b${k + j}"></div>`;
@@ -111,19 +117,19 @@ function searchCardsData(data) {
 }
 
 function gestionUrletStatus() {
+
     let nb=`&fname=${inputValue.value}`;  // Récupération de la valeur du champ texte
     const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}&language=fr${nb}`;
 
     fetch(urlName).then( (response) => {
         if(response.status >= 200 && response.status <= 299) {
             response.json().then((data) => {
-                console.log(data.data.length);
-                setTimeout(searchCardsData(data), 1500);
-                cardDetail(data);
+                setTimeout(searchCardsData(data), 1500); // Appel de la fonction de traitement de la requête en input
+                cardDetail(data); 
             })
-            .then((data) => {
+            /*. then((data) => {
                 cardDetail(data);
-            })
+            }) */
         } else {
             dataResult.innerText = `Résultats : aucun`;
             while (bgDark.firstChild) {
@@ -139,7 +145,7 @@ function gestionUrletStatus() {
 
 
 function cardDetail(datae) {
-    console.log(datae);
+    
     const idCard = [...document.querySelectorAll('.row img')];
     const titleCard = document.querySelector('#titleCard');
     const cardDescriptor = document.querySelector('#cardDescriptor');
@@ -148,7 +154,7 @@ function cardDetail(datae) {
     const defCard = document.querySelector('#defCard');
     const attributeCard = document.querySelector('#attributeCard');
     const typeCard = document.querySelector('#typeCard');
-    console.log(idCard);
+    
     for(let v = 0; v < datae.data.length; v++) {
         idCard[v].dataset.target = '';
         idCard[v].dataset.toggle = '';
@@ -156,18 +162,19 @@ function cardDetail(datae) {
 
             cardDescription = `&fname=${this.title}`;
             const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}&language=fr${cardDescription}`;
-            console.log(urlName);
 
             fetch(urlName).then( (response) => {
                 if(response.status >= 200 && response.status <= 299) {
                     response.json().then((data) => {
+
+                        // Remplissage du modal contenant les informations de la carte sélectionnée au clic
                         titleCard.innerText = data.data[0].name;
-                        cardDescriptor.innerHTML = `Description :<br>${data.data[0].desc}`;
-                        console.log(data.data);
+                        cardDescriptor.innerHTML = `<u>Description :</u><br>${data.data[0].desc}`;
+                        
                         cardImgDesc.src=data.data[0].card_images[0].image_url;
 
                         data.data[0].attribute ? attributeCard.innerText = `Attribut : ${data.data[0].attribute}` : attributeCard.innerText = `Type : ${data.data[0].type}`;
-                        data.data[0].attribute ? typeCard.innerText = `Type : ${data.data[0].race}` : '';
+                        data.data[0].race ? typeCard.innerText = `Type : ${data.data[0].race}` : '';
                         data.data[0].atk ? atkCard.innerText = `ATK : ${data.data[0].atk}` : atkCard.innerText = '';
                         data.data[0].def ? defCard.innerText = `DEF : ${data.data[0].def}` : defCard.innerText = '';
 
@@ -179,7 +186,7 @@ function cardDetail(datae) {
             .catch(err => {
                 console.log('Erreur : '+err);
             });
-
         })
     }
+
 }

@@ -57,7 +57,6 @@
                                     <i class="fas fa-th fa-lg" title="Affichage"></i>
                                 </div>
                                 <div class="col-4">
-                                    
                                 </div>
                             </div>
                         </div>
@@ -71,24 +70,24 @@
 
         <div class="container-fluid bg-lightdark text-white">
             <div class="row text-center" id="typeCartes">
-                <div class="col-2 tri">
+                <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="type=pendulum%20effect%20monster,pendulum%20normal%20monster,normal%20monster,effect%20monster,flip%20effect%20monster,normal%20tuner%20monster,tuner%20monster,ritual%20monster,ritual%20effect%20monster,spirit%20monster,toon%20monster,union%20effect%20monster">
                         Monstres Main
                 </div>
-                <div class="col-2 tri">
+                <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="type=fusion%20monster,link%20monster,pendulum%20effect%20fusion%20monster,synchro%20monster,synchro%20pendulum%20effect%20monster,synchro%20tuner%20monster,xyz%20monster,xyz%20pendulum%20effect%20monster">
                         Monstres Side
                 </div>
-                <div class="col-2 tri">
+                <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="">Tous</button>
                 </div>
-                <div class="col-2 tri">
+                <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="type=spell%20card">Magie</button>
                 </div>
-                <div class="col-2 tri">
+                <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="type=trap%20card">Piège</button>
                 </div>
-                <div class="col-2 tri">
+                <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="type=skill%20card">Skill</button>
                 </div>
             </div>
@@ -96,13 +95,13 @@
         <hr class="division">
     </nav>
 
-    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br>
 
     <div class="container bg-transparent" id="classCard">
         <!-- Insertion du/des résultat(s) de chaque requête -->
     </div>
 
-    <!-- Modal du tri -->
+    <!-- Modal du tri des cartes -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content bg-dark text-white">
@@ -149,7 +148,7 @@
                             <img src="" alt="" id="cardImgDesc">
                         </div>
                     </div>
-                    <div class="col-7">
+                    <div class="col-7" id="borderer">
                         <div class="row pb-3">
                             <div class="col-6 bg-info">
                                 <div id="attributeCard"></div>
@@ -181,13 +180,14 @@
             </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Fermer</button>
             </div>
         </div>
         </div>
     </div>
     
     <script src="script_YGOCardSearcher.js"></script>
+    <!-- Bootstrap 4.6.0 JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
     crossorigin="anonymous"></script>

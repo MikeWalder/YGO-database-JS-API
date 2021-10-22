@@ -159,4 +159,9 @@ input {
 
 #cardImgDesc {
     width: 100%;
+    border: 3px outset black;
+}
+
+#borderer .row .bg-info, #borderer .row .bg-secondary {
+    border: 3px outset black;
 }
