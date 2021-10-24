@@ -1,18 +1,62 @@
-const inputValue = document.querySelector('#inputValue');
+let inputValue = document.querySelector('#inputValue');
+
+let typeCardsNavbar = [...document.querySelectorAll('#typeCartes div button')];
 
 const dataOrder = document.querySelector('#dataOrder');
 const dataResult = document.querySelector('#dataResult');
 const bgDark = document.querySelector('.bg-transparent');
 
+const typesTextFrNavbar = ['Monstres Main', 'Monstres Side', 'Tous', 'Magie', 'Piège', 'Skill'];
+const typesTextEnNavbar = ['Main monster', 'Side Monster', 'All', 'Spell', 'Trap', 'Skill'];
+
 const classCards = document.querySelector('#classCards');
 
+const modalTitle = document.querySelector('#exampleModalLabel');
 const labelTri = [...document.querySelectorAll('.modal-body > label')];
 
-for(let lb = (labelTri.length - 1); lb > 0; lb--){
-    labelTri[2*lb+1] = labelTri[2*lb] = labelTri[lb]; 
-}
+const labelTriEn = ['Card name', 'Level/Rank', 'ATK', 'DEF'];
+const labelTriFr = ['Nom carte', 'Niveau/Rang', 'ATK', 'DEF'];
 
 let cardDescription = '';
+
+/* ----- Gestion de la langue ----- */
+const language = document.querySelector('#language');
+let lang = '&language=fr';
+language.addEventListener('click', function() {
+    if(language.innerText === 'FR') {
+        language.innerText = 'EN';
+        inputValue.placeholder = 'Enter a card name or a keyword';
+        for(let tp=0; tp<typeCardsNavbar.length; tp++){
+            typeCardsNavbar[tp].innerText = typesTextEnNavbar[tp];
+        }
+        modalTitle.innerText = 'Sorting';
+        for(let lT=0; lT<labelTri.length; lT++) {
+            labelTri[lT].innerText = labelTriEn[lT];
+        }
+        dataOrder.innerText = 'Order : -';
+        dataResult.innerText = 'Results : -';
+        lang = '';
+    } else {
+        language.innerText = 'FR';
+        inputValue.placeholder = 'Saisissez un nom de carte ou un mot-clé';
+        for(let tp=0; tp<typeCardsNavbar.length; tp++){
+            typeCardsNavbar[tp].innerText = typesTextFrNavbar[tp];
+        }
+        modalTitle.innerText = 'Tri';
+        for(let lT=0; lT<labelTri.length; lT++) {
+            labelTri[lT].innerText = labelTriFr[lT];
+        }
+        dataOrder.innerText = 'Ordre : -';
+        dataResult.innerText = 'Résultats : -';
+        lang = '&language=fr';
+    }
+    setTimeout(gestionUrletStatus(), 1200);
+});
+
+let labelTriTab = [];
+for(let lb = (labelTri.length - 1); lb > 0; lb--){
+    labelTriTab[2*lb+1] = labelTriTab[2*lb] = labelTri[lb]; 
+}
 
 /* ----- Réinitialisation de l'input texte au clic de l'icône scope ----- */
 const iconeScope = document.querySelector('.fa-search');
@@ -36,7 +80,7 @@ let orderTri = '';
 for(let cardN = 0; cardN < cardTri.length; cardN++) {
     cardTri[cardN].addEventListener('focus', function() {
         orderTri = this.value;
-        dataOrder.innerText = `Ordre : ${labelTri[cardN].innerText} (${this.innerText})`;
+        dataOrder.innerText = `Ordre : ${labelTriTab[cardN].innerText} (${this.innerText})`;
         gestionUrletStatus();
     })
 }
@@ -45,7 +89,7 @@ for(let cardN = 0; cardN < cardTri.length; cardN++) {
 inputValue.addEventListener('keyup', function(e) {
     e.preventDefault();
     if(e.keyCode==13){ // appui sur la touche entrée pour lancer la requête
-        gestionUrletStatus();
+        setTimeout(gestionUrletStatus(), 1200);
     }
 }, true);
 
@@ -68,9 +112,17 @@ function searchCardsData(data) {
 
     // Affichage du nombre de résultats dans la navbar
     if(data.data.length) {
-        dataResult.innerText = `Résultats : ${data.data.length}`;
+        if(language.innerText === 'FR') {
+            dataResult.innerText = `Résultats : ${data.data.length}`;
+        } else {
+            dataResult.innerText = `Results : ${data.data.length}`;
+        }
     } else {
-        dataResult.innerText = `Résultats : aucun`;
+        if(language.innerText === 'FR') {
+            dataResult.innerText = `Résultats : aucun`;
+        } else {
+            dataResult.innerText = `Results : none`;
+        }
     }
 
     // Suppression de tous les éléments enfants de la liste des résultats lors de la précédente recherche
@@ -101,7 +153,7 @@ function searchCardsData(data) {
             roww.innerHTML = disp;
         }
 
-        if(data.data[k]) { // si l'indice du tableau JSON contient des données
+        if(data.data[k]) { // si l'indice du tableau JSON contient des données afficher les résultats
             document.querySelector(`#a${k}`).src = data.data[k].card_images[0].image_url_small;
             document.querySelector(`#a${k}`).title = data.data[k].name;
             document.querySelector(`#a${k}`).alt = data.data[k].name;
@@ -119,7 +171,7 @@ function searchCardsData(data) {
 function gestionUrletStatus() {
 
     let nb=`&fname=${inputValue.value}`;  // Récupération de la valeur du champ texte
-    const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}&language=fr${nb}`;
+    const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}${lang}${nb}`;
 
     fetch(urlName).then( (response) => {
         if(response.status >= 200 && response.status <= 299) {
@@ -127,9 +179,6 @@ function gestionUrletStatus() {
                 setTimeout(searchCardsData(data), 1500); // Appel de la fonction de traitement de la requête en input
                 cardDetail(data); 
             })
-            /*. then((data) => {
-                cardDetail(data);
-            }) */
         } else {
             dataResult.innerText = `Résultats : aucun`;
             while (bgDark.firstChild) {
@@ -154,6 +203,7 @@ function cardDetail(datae) {
     const defCard = document.querySelector('#defCard');
     const attributeCard = document.querySelector('#attributeCard');
     const typeCard = document.querySelector('#typeCard');
+    const cardPrice = document.querySelector('#cardPrice');
     
     for(let v = 0; v < datae.data.length; v++) {
         idCard[v].dataset.target = '';
@@ -161,11 +211,14 @@ function cardDetail(datae) {
         idCard[v].addEventListener('click', function() {
 
             cardDescription = `&fname=${this.title}`;
-            const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}&language=fr${cardDescription}`;
+            const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}${lang}${cardDescription}`;
 
             fetch(urlName).then( (response) => {
                 if(response.status >= 200 && response.status <= 299) {
                     response.json().then((data) => {
+                        console.log(data);
+                        this.dataset.target = "#modalDescription";
+                        this.dataset.toggle = "modal";
 
                         // Remplissage du modal contenant les informations de la carte sélectionnée au clic
                         titleCard.innerText = data.data[0].name;
@@ -173,13 +226,51 @@ function cardDetail(datae) {
                         
                         cardImgDesc.src=data.data[0].card_images[0].image_url;
 
-                        data.data[0].attribute ? attributeCard.innerText = `Attribut : ${data.data[0].attribute}` : attributeCard.innerText = `Type : ${data.data[0].type}`;
-                        data.data[0].race ? typeCard.innerText = `Type : ${data.data[0].race}` : '';
-                        data.data[0].atk ? atkCard.innerText = `ATK : ${data.data[0].atk}` : atkCard.innerText = '';
-                        data.data[0].def ? defCard.innerText = `DEF : ${data.data[0].def}` : defCard.innerText = '';
 
-                        this.dataset.target = "#modalDescription";
-                        this.dataset.toggle = "modal";
+                        let attribute = '';
+                        switch(data.data[0].attribute) {
+                            case 'DARK':
+                                attribute = `<img src='img/dark100.png' alt='${data.data[0].attribute}'>`;
+                                break;
+                            case 'LIGHT':
+                                attribute = `<img src='img/light100.png' alt='${data.data[0].attribute}'>`;
+                                break;
+                            case 'WATER':
+                                attribute = `<img src='img/water100.png' alt='${data.data[0].attribute}'>`;
+                                break;
+                            case 'FIRE':
+                                attribute = `<img src='img/fire100.png' alt='${data.data[0].attribute}'>`;
+                                break;
+                            case 'EARTH':
+                                attribute = `<img src='img/earth100.png' alt='${data.data[0].attribute}'>`;
+                                break;
+                            case 'WIND':
+                                attribute = `<img src='img/wind100.png' alt='${data.data[0].attribute}'>`;
+                                break;
+                            case 'DIVINE':
+                                attribute = `<img src='img/divine100.png' alt='${data.data[0].attribute}'>`;
+                                break;
+                        }
+                        let type = '';
+                        switch(data.data[0].type) {
+                            case 'Spell Card':
+                                type = `<img src='img/spell100.png' alt='${data.data[0].type}'>`;
+                                break;
+                            case 'Trap Card':
+                                type = `<img src='img/trap100.png' alt='${data.data[0].type}'>`;
+                                break;
+                        }
+
+                        data.data[0].attribute ? attributeCard.innerHTML = `Attribut :   ${attribute}` : attributeCard.innerHTML = `Type : ${type}`;
+                        data.data[0].race ? typeCard.innerText = `${data.data[0].race}` : '';
+                        data.data[0].atk ? atkCard.innerText = `ATK : ${data.data[0].atk}` : atkCard.innerText = '';
+                        data.data[0].atk == 0 ? atkCard.innerText = `ATK : ${data.data[0].atk}` : "";
+                        data.data[0].def ? defCard.innerText = `DEF : ${data.data[0].def}` : defCard.innerText = '';
+                        data.data[0].def == 0 ? defCard.innerText = `DEF : ${data.data[0].def}` : "";
+                        data.data[0].card_prices[0] ? cardPrice.innerHTML = `<i class="fa fal-g fa-money-check-alt"></i><br>
+                        CardMarket : ${data.data[0].card_prices[0].cardmarket_price}€
+                        <br>Ebay : ${data.data[0].card_prices[0].ebay_price}€` : ''; 
+
                     })
                 }
             })

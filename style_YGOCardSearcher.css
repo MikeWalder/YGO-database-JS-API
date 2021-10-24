@@ -13,8 +13,12 @@ nav {
 }
 
 #logo {
-    background: url('img/puzzle.png') no-repeat center;
+    background: url('img/puzzle.png') no-repeat center, url('img/circle2.png') no-repeat center;
     size: 80%;
+}
+
+#logo2 {
+    background: url('img/kuriboh.png') no-repeat center;
 }
 
 #main-searcher {
@@ -54,7 +58,7 @@ input {
 
 }
 
-.fa-th:hover, .fa-search:hover, .fa-sort-amount-down:hover {
+.fa-th:hover, .fa-search:hover, .fa-sort-amount-down:hover, #language:hover {
     color: lightblue;
     scale: 1.6;
     transition: scale 0.5s, color 0.5s;
@@ -156,12 +160,21 @@ input {
     padding: 10px 0px;
 }
 
+#attributeCard img {
+    width: 20%;
+    margin-left: 1.25em;
+}
 
 #cardImgDesc {
     width: 100%;
     border: 3px outset black;
 }
 
-#borderer .row .bg-info, #borderer .row .bg-secondary {
+#borderer .row .bg-info, #borderer .row .bg-secondary .row .bg-primary{
     border: 3px outset black;
+}
+
+.fa-money-check-alt {
+    color: darkgreen;
+    border: none;
 }
