@@ -54,8 +54,8 @@ language.addEventListener('click', function() {
 });
 
 let labelTriTab = [];
-for(let lb = (labelTri.length - 1); lb > 0; lb--){
-    labelTriTab[2*lb+1] = labelTriTab[2*lb] = labelTri[lb]; 
+for(let lb = (labelTri.length - 1); lb >= 0; lb--){
+    labelTriTab[2*lb+1] = labelTriTab[2*lb] = labelTri[lb].innerText; 
 }
 
 /* ----- Réinitialisation de l'input texte au clic de l'icône scope ----- */
@@ -92,7 +92,6 @@ inputValue.addEventListener('keyup', function(e) {
         setTimeout(gestionUrletStatus(), 1200);
     }
 }, true);
-
 
 
 
@@ -204,6 +203,7 @@ function cardDetail(datae) {
     const attributeCard = document.querySelector('#attributeCard');
     const typeCard = document.querySelector('#typeCard');
     const cardPrice = document.querySelector('#cardPrice');
+    const cardBanList = document.querySelector('#cardBanList');
     
     for(let v = 0; v < datae.data.length; v++) {
         idCard[v].dataset.target = '';
@@ -216,7 +216,7 @@ function cardDetail(datae) {
             fetch(urlName).then( (response) => {
                 if(response.status >= 200 && response.status <= 299) {
                     response.json().then((data) => {
-                        console.log(data);
+                        
                         this.dataset.target = "#modalDescription";
                         this.dataset.toggle = "modal";
 
@@ -251,6 +251,7 @@ function cardDetail(datae) {
                                 attribute = `<img src='img/divine100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                         }
+                        
                         let type = '';
                         switch(data.data[0].type) {
                             case 'Spell Card':
@@ -267,10 +268,18 @@ function cardDetail(datae) {
                         data.data[0].atk == 0 ? atkCard.innerText = `ATK : ${data.data[0].atk}` : "";
                         data.data[0].def ? defCard.innerText = `DEF : ${data.data[0].def}` : defCard.innerText = '';
                         data.data[0].def == 0 ? defCard.innerText = `DEF : ${data.data[0].def}` : "";
-                        data.data[0].card_prices[0] ? cardPrice.innerHTML = `<i class="fa fal-g fa-money-check-alt"></i><br>
-                        CardMarket : ${data.data[0].card_prices[0].cardmarket_price}€
+                        data.data[0].card_prices[0] ? cardPrice.innerHTML = `<div class="text-center"><i class="fa fa-money-check-alt fa-2x mb-2"></i></div>
+                        Amazon : ${data.data[0].card_prices[0].amazon_price}€
+                        <br>CardMarket : ${data.data[0].card_prices[0].cardmarket_price}€
                         <br>Ebay : ${data.data[0].card_prices[0].ebay_price}€` : ''; 
-
+                        console.log(data.data[0]);
+                        cardBanList.innerHTML = '<ul>';
+                        if(data.data[0].card_sets) {
+                            for(let set = 0; set < data.data[0].card_sets.length; set++) {
+                                cardBanList.innerHTML += `<li>${data.data[0].card_sets[set].set_name} ${data.data[0].card_sets[set].set_rarity_code}</li>`;
+                            }
+                            cardBanList += '</ul>';
+                        }
                     })
                 }
             })
