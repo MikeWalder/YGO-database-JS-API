@@ -203,7 +203,7 @@ function cardDetail(datae) {
     const attributeCard = document.querySelector('#attributeCard');
     const typeCard = document.querySelector('#typeCard');
     const cardPrice = document.querySelector('#cardPrice');
-    const cardBanList = document.querySelector('#cardBanList');
+    let cardBanList = document.querySelector('#cardBanList');
     
     for(let v = 0; v < datae.data.length; v++) {
         idCard[v].dataset.target = '';
@@ -225,7 +225,6 @@ function cardDetail(datae) {
                         cardDescriptor.innerHTML = `<u>Description :</u><br>${data.data[0].desc}`;
                         
                         cardImgDesc.src=data.data[0].card_images[0].image_url;
-
 
                         let attribute = '';
                         switch(data.data[0].attribute) {
@@ -251,7 +250,7 @@ function cardDetail(datae) {
                                 attribute = `<img src='img/divine100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                         }
-                        
+
                         let type = '';
                         switch(data.data[0].type) {
                             case 'Spell Card':
@@ -272,7 +271,7 @@ function cardDetail(datae) {
                         Amazon : ${data.data[0].card_prices[0].amazon_price}€
                         <br>CardMarket : ${data.data[0].card_prices[0].cardmarket_price}€
                         <br>Ebay : ${data.data[0].card_prices[0].ebay_price}€` : ''; 
-                        console.log(data.data[0]);
+                        
                         cardBanList.innerHTML = '<ul>';
                         if(data.data[0].card_sets) {
                             for(let set = 0; set < data.data[0].card_sets.length; set++) {
