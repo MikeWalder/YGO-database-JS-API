@@ -252,6 +252,7 @@ function cardDetail(datae) {
                         }
 
                         let type = '';
+                        console.log(data);
                         switch(data.data[0].type) {
                             case 'Spell Card':
                                 type = `<img src='img/spell100.png' alt='${data.data[0].type}'>`;
@@ -271,13 +272,14 @@ function cardDetail(datae) {
                         Amazon : ${data.data[0].card_prices[0].amazon_price}€
                         <br>CardMarket : ${data.data[0].card_prices[0].cardmarket_price}€
                         <br>Ebay : ${data.data[0].card_prices[0].ebay_price}€` : ''; 
-                        
-                        cardBanList.innerHTML = '<ul>';
+                        cardBanList.innerHTML = '';
+                        cardBanList.innerHTML += '<ul>';
                         if(data.data[0].card_sets) {
                             for(let set = 0; set < data.data[0].card_sets.length; set++) {
-                                cardBanList.innerHTML += `<li>${data.data[0].card_sets[set].set_name} ${data.data[0].card_sets[set].set_rarity_code}</li>`;
+                                cardBanList.innerHTML += `<li><strong>${data.data[0].card_sets[set].set_name}</strong> 
+                                ${data.data[0].card_sets[set].set_rarity_code} - ${data.data[0].card_sets[set].set_code}</li>`;
                             }
-                            cardBanList += '</ul>';
+                            cardBanList.innerHTML += '</ul>';
                         }
                     })
                 }
