@@ -62,7 +62,20 @@ for(let lb = (labelTri.length - 1); lb >= 0; lb--){
 const iconeScope = document.querySelector('.fa-search');
 iconeScope.addEventListener('click', function() {
     inputValue.value = '';
-})
+    inputValue.style.backgroundColor = "lightblue";
+    inputValue.style.transition = "background-color 0.4s";
+});
+
+/* ----- Focus ou non de l'input texte ----- */
+inputValue.addEventListener('focus', function() {
+    inputValue.style.backgroundColor = "lightblue";
+    inputValue.style.transition = "background-color 0.4s";
+});
+
+inputValue.addEventListener('blur', function() {
+    inputValue.style.backgroundColor = "white";
+    inputValue.style.transition = "background-color 0.4s";
+});
 
 /* ----- Classement par type de carte ----- */
 const typeOfCards = [...document.querySelectorAll('.tri > button')];
@@ -73,6 +86,14 @@ for(let ak = 0; ak < typeOfCards.length; ak++) {
         gestionUrletStatus();
     })
 }
+
+/* ----- Gestion de la banlist au format TCG ou OCG ----- */
+const banList = document.querySelector('#banList');
+let format = '&list=OCG';
+banList.addEventListener('click', function() {
+    alert('Bientôt la liste des cartes interdites, limitées et semi-limitées en format OCG et TCG');
+})
+
 
 /* ----- Classement dans le modal ----- */
 const cardTri = [...document.querySelectorAll('.modal-body div > button')];
@@ -211,7 +232,8 @@ function cardDetail(datae) {
         idCard[v].addEventListener('click', function() {
 
             cardDescription = `&fname=${this.title}`;
-            const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}${lang}${cardDescription}`;
+            const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}${lang}${cardDescription}${format}`;
+            console.log(urlName);
 
             fetch(urlName).then( (response) => {
                 if(response.status >= 200 && response.status <= 299) {
@@ -268,19 +290,23 @@ function cardDetail(datae) {
                         data.data[0].atk == 0 ? atkCard.innerText = `ATK : ${data.data[0].atk}` : "";
                         data.data[0].def ? defCard.innerText = `DEF : ${data.data[0].def}` : defCard.innerText = '';
                         data.data[0].def == 0 ? defCard.innerText = `DEF : ${data.data[0].def}` : "";
-                        data.data[0].card_prices[0] ? cardPrice.innerHTML = `<div class="text-center"><i class="fa fa-money-check-alt fa-2x mb-2"></i></div>
-                        Amazon : ${data.data[0].card_prices[0].amazon_price}€
-                        <br>CardMarket : ${data.data[0].card_prices[0].cardmarket_price}€
-                        <br>Ebay : ${data.data[0].card_prices[0].ebay_price}€` : ''; 
-                        cardBanList.innerHTML = '';
-                        cardBanList.innerHTML += '<ul>';
+
+                        data.data[0].card_prices[0] ? cardPrice.innerHTML += `
+                        Amazon : ${data.data[0].card_prices[0].amazon_price}$
+                        <br>CardMarket : ${data.data[0].card_prices[0].cardmarket_price}$
+                        <br>Ebay : ${data.data[0].card_prices[0].ebay_price}$` : ''; 
+
+                        //cardBanList.innerHTML = '';
+                        
                         if(data.data[0].card_sets) {
+                            cardBanList.innerHTML += '<ul>';
                             for(let set = 0; set < data.data[0].card_sets.length; set++) {
                                 cardBanList.innerHTML += `<li><strong>${data.data[0].card_sets[set].set_name}</strong> 
-                                ${data.data[0].card_sets[set].set_rarity_code} - ${data.data[0].card_sets[set].set_code}</li>`;
+                                ${data.data[0].card_sets[set].set_rarity_code} - ${data.data[0].card_sets[set].set_code} 
+                                (${data.data[0].card_sets[set].set_price}$)</li>`;
                             }
-                            cardBanList.innerHTML += '</ul>';
-                        }
+                            
+                        } cardBanList.innerHTML += '</ul>';
                     })
                 }
             })

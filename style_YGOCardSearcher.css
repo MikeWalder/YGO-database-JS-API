@@ -39,7 +39,6 @@ input {
 }
 
 /* ----- Icônes de la navbar ----- */
-
 .fas {
     color: white;
     font-size: 1.5em;
@@ -55,17 +54,26 @@ input {
             0 5px 10px rgba(0,0,0,.25),
             0 10px 10px rgba(0,0,0,.2),
             0 20px 20px rgba(0,0,0,.15);
-
 }
 
-.fa-th:hover, .fa-search:hover, .fa-sort-amount-down:hover, #language:hover {
-    color: lightblue;
-    scale: 1.6;
-    transition: scale 0.5s, color 0.5s;
+.fa-ban:hover, .fa-search:hover, .fa-sort-amount-down:hover, #language:hover {
+    transform: scale(1.2);
+    transition: scale 0.4s, color 0.4s;
+}
+
+.fa-search:hover {
+    color: goldenrod;
+}
+
+.fa-sort-amount-down:hover {
+    color: cyan;
+}
+
+.fa-ban:hover {
+    color: darkred;
 }
 
 /* ----- Barre horizontale délimitant la navbar du reste de la page ----- */
-
 .division {
     background-color: white;
     height: 2px;
@@ -95,10 +103,15 @@ input {
 
 .tri > button:focus {
     color: yellow;
+    transition: color 0.4s;
+}
+
+.tri > button:blur {
+    color: white;
+    transition: color 0.4s;
 }
 
 /* ----- Gestion des images de chaque résultat retourné et du hover ----- */
-
 .hovertexter > img:hover {
     transform: scale(1.07);
     transition: transform 0.4s;
@@ -127,7 +140,7 @@ input {
 }
 
 .hoverCardDescription {
-    padding-top: 10%;
+    padding-top: 5%;
     bottom: 0px;
     height: 28%;
     font-size: 11px;
@@ -136,11 +149,23 @@ input {
 .hovertexter:hover .hoverCardTitle, .hovertexter:hover .hoverCardDescription {
     visibility: visible;
     opacity: 1;
-    transition: opacity 0.4s;
+    transform: scale(1.07);
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.hovertexter:hover .hoverCardTitle {
+    top: -5px;
+    height: 20%;
+    transition: height 0.4s;
+}
+
+.hovertexter:hover .hoverCardDescription {
+    bottom: 2%;
+    height: 22%;
+    transition: height 0.4s;
 }
 
 /* ------ Modal treatment section ------ */
-
 .modal-body > label {
     display: block;
     float: left;
@@ -191,8 +216,15 @@ input {
     max-height: 15em;
 }
 
-#cardBanList {
+#cardPrice, #cardBanList {
     font-size: 11px;
+    list-style-position: outside;
+    padding: 0px;
+}
+
+#cardBanList ul, cardBanList ul li {
+    padding: 0px;
+    margin: 0px;
 }
 
 .priceBanList {
