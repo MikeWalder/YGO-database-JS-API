@@ -183,6 +183,7 @@ input {
     width: 120px;
     min-width: 110px;
     padding: 10px 0px;
+    margin: 10px 0px;
 }
 
 #attributeCard img {
@@ -230,4 +231,15 @@ input {
 .priceBanList {
     overflow: auto;
     max-height: 10em;
+}
+
+#formatBan > button {
+    padding: 0.2em 1.9em;
+}
+
+#formatBan > button {
+    width: 80px;
+    min-width: 80px;
+    padding: 10px 0px;
+    margin: 10px 0px;
 }
