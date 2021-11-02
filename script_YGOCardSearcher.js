@@ -31,6 +31,8 @@ let lang = '&language=fr';
 for(let lb = (labelTri.length - 1); lb >= 0; lb--){
     labelTriTab[2*lb+1] = labelTriTab[2*lb] = labelTriFr[lb]; 
 }
+let carDescNoLimited = 'Illimité';
+
 language.addEventListener('click', function() {
     if(language.innerText === 'FR') {
         language.innerText = 'EN';
@@ -50,6 +52,7 @@ language.addEventListener('click', function() {
         orderText = dataOrder.innerText.substr(0, 7);
         dataResult.innerText = 'Results : ';
         lang = '';
+        carDescNoLimited = 'Unlimited';
     } 
     else {
         language.innerText = 'FR';
@@ -71,6 +74,7 @@ language.addEventListener('click', function() {
         orderText = dataOrder.innerText.substr(0, 7);
         dataResult.innerText = 'Résultats : ';
         lang = '&language=fr';
+        carDescNoLimited = 'Illimité';
     }
     setTimeout(gestionUrletStatus(labelTriTab), 1200);
 });
@@ -260,8 +264,9 @@ function cardDetail(datae) {
     const iD_Card = document.querySelector('#iD_Card');
     const attributeCard = document.querySelector('#attributeCard');
     const typeCard = document.querySelector('#typeCard');
-    const cardPrice = document.querySelector('#cardPrice');
-    let cardBanList = document.querySelector('#cardBanList');
+    /* const cardPrice = document.querySelector('#cardPrice'); */
+    const cardPriceAndSet = document.querySelector('#cardPriceAndSet');
+    const cardLimitation = document.querySelector('#cardLimitation');
     
     for(let v = 0; v < datae.data.length; v++) {
         idCard[v].dataset.target = '';
@@ -270,7 +275,6 @@ function cardDetail(datae) {
 
             cardDescription = `&fname=${this.title}`;
             const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}${lang}${cardDescription}`;
-            console.log(urlName);
 
             fetch(urlName).then( (response) => {
                 if(response.status >= 200 && response.status <= 299) {
@@ -278,13 +282,24 @@ function cardDetail(datae) {
                         
                         this.dataset.target = "#modalDescription";
                         this.dataset.toggle = "modal";
-                        console.log(data.data[0]);
 
                         // Remplissage du modal contenant les informations de la carte sélectionnée au clic
                         titleCard.innerText = data.data[0].name;
                         cardDescriptor.innerHTML = `<u>Description :</u><br>${data.data[0].desc}`;
                         
+                        let cardOcg = ''; 
+                        let cardTcg = '';
                         cardImgDesc.src=data.data[0].card_images[0].image_url;
+                        if(data.data[0].banlist_info) {
+                            cardOcg = data.data[0].banlist_info.ban_ocg;
+                            cardOcg = cardBanListFormat(cardOcg);
+                            cardTcg = data.data[0].banlist_info.ban_tcg;
+                            cardTcg = cardBanListFormat(cardTcg);
+                        }
+
+                        data.data[0].banlist_info ? cardLimitation.innerHTML = `OCG : <span class="bolder">${cardOcg}</span> 
+                        <br>TCG : &nbsp;<span class="bolder">${cardTcg}</span>` : 
+                        cardLimitation.innerHTML = `OCG - TCG : <span class="bolder">${carDescNoLimited}</span>`;
 
                         // Traitement de l'icône d'attribut / type au modal de description de la carte
                         let attribute = '';
@@ -330,21 +345,20 @@ function cardDetail(datae) {
                         data.data[0].def == 0 ? defCard.innerText = `DEF : ${data.data[0].def}` : "";
                         data.data[0].archetype ? archeType.innerText = `Archetype : ${data.data[0].archetype}` : archeType.innerText = 'Archetype : - ';
                         data.data[0].id ? iD_Card.innerText = `ID : ${data.data[0].id}` : iD_Card.innerText = '';
-
-                        data.data[0].card_prices[0] ? cardPrice.innerHTML += `
-                        Amazon : ${data.data[0].card_prices[0].amazon_price}$
-                        <br>CardMarket : ${data.data[0].card_prices[0].cardmarket_price}$
-                        <br>Ebay : ${data.data[0].card_prices[0].ebay_price}$` : ''; 
                         
+                        cardPriceAndSet.innerHTML = '';
                         if(data.data[0].card_sets) {
-                            cardBanList.innerHTML += '<ul>';
+                            cardPriceAndSet.innerHTML += '<ul>';
                             for(let set = 0; set < data.data[0].card_sets.length; set++) {
-                                cardBanList.innerHTML += `<li><strong>${data.data[0].card_sets[set].set_name}</strong> 
+                                cardPriceAndSet.innerHTML += `<li><strong class="text-warning">${data.data[0].card_sets[set].set_name}</strong> 
                                 ${data.data[0].card_sets[set].set_rarity_code} - ${data.data[0].card_sets[set].set_code} 
-                                (${data.data[0].card_sets[set].set_price}$)</li>`;
+                                <br>Amazon : <strong>${data.data[0].card_prices[0].amazon_price}$</strong> - 
+                                CardMarket : <strong>${data.data[0].card_prices[0].cardmarket_price}$</strong> - 
+                                Ebay : <strong>${data.data[0].card_prices[0].ebay_price}$</strong></li><br>`;
                             }
+                            cardPriceAndSet.innerHTML += '</ul>';
                         } 
-                        cardBanList.innerHTML += '</ul>';
+                        
                     })
                 }
             })
@@ -354,4 +368,19 @@ function cardDetail(datae) {
         })
     }
 
+}
+
+function cardBanListFormat(cardFormat) {
+    switch(cardFormat) {
+        case "Banned": 
+            cardFormat = `<span style="color:red">Banned</span>`;
+            break;
+        case "Limited":
+            cardFormat = `<span style="color:orange">Limited</span>`;
+            break;
+        case "Semi-Limited":
+            cardFormat = `<span style="color:yellow">Semi-Limited</span>`;
+            break;
+    }
+    return cardFormat;
 }
