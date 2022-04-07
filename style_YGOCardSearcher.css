@@ -17,6 +17,10 @@ nav {
     size: 80%;
 }
 
+#logo a {
+    opacity: 0;
+}
+
 #logo2 {
     background: url('img/kuriboh.png') no-repeat center;
 }

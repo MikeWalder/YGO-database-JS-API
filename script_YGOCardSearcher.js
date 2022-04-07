@@ -58,7 +58,7 @@ for(let lb = (labelTri.length - 1); lb >= 0; lb--){
     labelTriTab[2*lb+1] = labelTriTab[2*lb] = labelTri[lb].innerText; 
 }
 
-/* ----- Réinitialisation de l'input texte au clic de l'icône scope ----- */
+/* ----- Réinitialisation de l'input texte au clic de l'icône scope de la barre de recherche ----- */
 const iconeScope = document.querySelector('.fa-search');
 iconeScope.addEventListener('click', function() {
     inputValue.value = '';
@@ -233,7 +233,7 @@ function cardDetail(datae) {
 
             cardDescription = `&fname=${this.title}`;
             const urlName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?${typeCard}${orderTri}${lang}${cardDescription}${format}`;
-            console.log(urlName);
+            //console.log(urlName);
 
             fetch(urlName).then( (response) => {
                 if(response.status >= 200 && response.status <= 299) {
