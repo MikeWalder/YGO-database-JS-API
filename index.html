@@ -56,7 +56,7 @@
                         <div class="col-3 mt-2">
                             <div class="row text-center">
                                 <div class="col-6">
-                                    <i class="fas fa-ban fa-lg" title="Banlist" id="banList"></i>
+                                    <i class="fas fa-ban fa-lg" data-toggle="modal" data-target="#modalBanList" title="Banlist" id="banList"></i>
                                 </div>
                                 <div class="col-4 text-white">
                                     <div id="language" class="font-weight-bold">FR</div>
@@ -112,26 +112,58 @@
 
     <!-- Modal du tri des cartes -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
             <div class="modal-content bg-dark text-white">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tri</h5><hr>
+                <div class="modal-header mx-auto">
+                    <h4 class="modal-title" id="exampleModalLabel">Tri</h4>
                 </div>
-                <br>
+                
+                <div class="modal-body align-middle modal_tri">
+                    <label for="nameOrder" class="pt-3">Nom carte </label>
+                    <div id="cN">
+                        <button type="button" name="nameOrder" class="btn btn-info cardName" value="&sort=name&sortorder=asc" aria-pressed="true">A - Z</button>
+                        <button type="button" name="nameOrder" class="btn btn-info cardName" value="&sort=name&sortorder=desc">Z - A</button>
+                    </div>
+                    <br>
+                    <label for="level" class="pt-3">Niveau/Rang </label>
+                    <div id="cLR">
+                        <button type="button" name="level" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=asc">Ordre croissant</button>
+                        <button type="button" name="level" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=desc">Ordre décroissant</button>
+                    </div>
+                    <br>
+                    <label for="atk" class="pt-3">ATK </label>
+                    <div id="cATK">
+                        <button type="button" name="atk" class="btn btn-info cardAtk" value="&sort=atk&sortorder=asc">Ordre croissant</button>
+                        <button type="button" name="atk" class="btn btn-info cardAtk" value="&sort=atk&sortorder=desc">Ordre décroissant</button>
+                    </div>
+                    <br>
+                    <label for="def" class="pt-3">DEF </label>
+                    <div id="cDEF">
+                        <button type="button" name="def" class="btn btn-info cardDef" value="&sort=def&sortorder=asc">Ordre croissant</button>
+                        <button type="button" name="def" class="btn btn-info cardDef" value="&sort=def&sortorder=desc">Ordre décroissant</button>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal du tri de la banlist -->
+    <div class="modal fade" id="modalBanList" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header mx-auto">
+                    <h4 class="modal-title" id="exampleModalLabel">Ban list</h4>
+                </div>
+                
                 <div class="modal-body align-middle">
-
-                    <label>Nom carte </label><div id="cN"><button type="button" class="btn btn-info cardName" value="&sort=name&sortorder=asc" aria-pressed="true">A - Z</button>
-                    <button type="button" class="btn btn-info cardName" value="&sort=name&sortorder=desc">Z - A</button></div><br>
-
-                    <label>Niveau/Rang </label><div id="cLR"><button type="button" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=asc">Ordre croissant</button>
-                    <button type="button" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=desc">Ordre décroissant</button></div><br>
-                    
-                    <label>ATK </label><div id="cATK"><button type="button" class="btn btn-info cardAtk" value="&sort=atk&sortorder=asc">Ordre croissant</button>
-                    <button type="button" class="btn btn-info cardAtk" value="&sort=atk&sortorder=desc">Ordre décroissant</button></div><br>
-                    
-                    <label>DEF </label><div id="cDEF"><button type="button" class="btn btn-info cardDef" value="&sort=def&sortorder=asc">Ordre croissant</button>
-                    <button type="button" class="btn btn-info cardDef" value="&sort=def&sortorder=desc">Ordre décroissant</button></div><br>
-                    
+                    <label for="format" class="d-none d-sm-block pt-3">Format : </label>
+                    <div id="formatBan">
+                        <button type="button" name="format" class="btn btn-info formatCard" value="&banlist=ocg">OCG</button>
+                        <button type="button" name="format" class="btn btn-info formatCard" value="&banlist=tcg">TCG</button>
+                        <button type="button" name="format" class="btn btn-info formatCard" value=""> &nbsp; - &nbsp; </button>
+                    </div>
+                    <br>
                 </div>
             </div>
         </div>
@@ -152,12 +184,15 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row pt-2">
-                            <div class="col-5">
-                                <div class="img-descriptor">
+                            <div class="col-sm-7 col-md-5 img-descriptor">
+                                <div class="col-12">
                                     <img src="" alt="" id="cardImgDesc">
                                 </div>
+                                <div class="col-12 bg-info limitator mt-3">
+                                    <div class="modal-text pl-3" id="cardLimitation"></div>
+                                </div>
                             </div>
-                            <div class="col-7" id="borderer">
+                            <div class="col-sm-5 col-md-7" id="borderer">
                                 <div class="row pb-3">
                                     <div class="col-6 bg-info">
                                         <div id="attributeCard"></div>
@@ -175,23 +210,24 @@
                                     </div>
                                 </div>
                                 <div class="row pb-3">
-                                    <div class="col-12 bg-secondary">
+                                    <div class="col-6 bg-info">
+                                        <div id="archeType"></div>
+                                    </div>
+                                    <div class="col-6 bg-info">
+                                        <div id="iD_Card"></div>
+                                    </div>
+                                </div>
+                                <div class="row pb-3">
+                                    <div class="col-12 bg-info">
                                         <div class="modal-text" id="cardDescriptor"></div>
                                     </div>
                                 </div>
                                 <div class="row priceBanList">
-                                    <div class="col-6 bg-secondary">
-                                        <div class="modal-text" id="cardPrice">
-                                            <div class="text-center pb-1">
-                                                <i class="fa fa-money-check-alt fa-2x"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 bg-secondary">
-                                        <div class="text-center pb-1">
+                                    <div class="col-12 bg-info">
+                                        <div class="text-center setsCardSelected">
                                             Sets
                                         </div>
-                                        <div class="modal-text" id="cardBanList">
+                                        <div class="modal-text" id="cardPriceAndSet">
                                         </div>
                                     </div>
                                 </div>
