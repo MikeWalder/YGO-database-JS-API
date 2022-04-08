@@ -285,7 +285,7 @@ function cardDetail(datae) {
 
                         // Remplissage du modal contenant les informations de la carte sélectionnée au clic
                         titleCard.innerText = data.data[0].name;
-                        cardDescriptor.innerHTML = `<u>Description :</u><br>${data.data[0].desc}`;
+                        cardDescriptor.innerHTML = `<u class='mt-3'>Description :</u><br>${data.data[0].desc}`;
                         
                         let cardOcg = ''; 
                         let cardTcg = '';
@@ -338,7 +338,7 @@ function cardDetail(datae) {
                         }
 
                         data.data[0].attribute ? attributeCard.innerHTML = `Attribut :   ${attribute}` : attributeCard.innerHTML = `Type : ${type}`;
-                        data.data[0].race ? typeCard.innerText = `${data.data[0].race}` : '';
+                        data.data[0].race ? typeCard.innerText = `Type : ${data.data[0].race}` : '';
                         data.data[0].atk ? atkCard.innerText = `ATK : ${data.data[0].atk}` : atkCard.innerText = '';
                         data.data[0].atk == 0 ? atkCard.innerText = `ATK : ${data.data[0].atk}` : "";
                         data.data[0].def ? defCard.innerText = `DEF : ${data.data[0].def}` : defCard.innerText = '';
