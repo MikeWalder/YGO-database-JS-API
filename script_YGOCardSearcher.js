@@ -283,7 +283,7 @@ function cardDetail(datae) {
                         this.dataset.target = "#modalDescription";
                         this.dataset.toggle = "modal";
 
-                        // Remplissage du modal contenant les informations de la carte sélectionnée au clic
+                        // Remplissage du modal contenant les informations de la carte sélectionnée pour plus d'informations
                         titleCard.innerText = data.data[0].name;
                         cardDescriptor.innerHTML = `<u class='mt-3'>Description :</u><br>${data.data[0].desc}`;
                         
@@ -383,4 +383,33 @@ function cardBanListFormat(cardFormat) {
             break;
     }
     return cardFormat;
+}
+
+function cardTypeByLanguage(language){
+    if(language === 'FR') {
+        switch(data.data[0].race){
+            case "Fairy" :
+                typeCard = `Type : Elfe`;
+                break;
+            case "Warrior" : 
+                typeCard = `Type : Guerrier`;
+                break;
+            case "Spellcaster" : 
+                typeCard = `Type : Guerrier`;
+                break;
+            case "Fiend" : 
+                typeCard = `Type : Démon`;
+                break;
+            case "Machine" : 
+                typeCard = `Type : Machine`;
+                break;
+            case "Rock" : 
+                typeCard = `Type : Rocher`;
+                break;
+            case "Fire" : 
+                typeCard = `Type : Feu`;
+                break;
+        }
+        return typeCard;
+    }
 }
