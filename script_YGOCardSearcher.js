@@ -305,25 +305,25 @@ function cardDetail(datae) {
                         let attribute = '';
                         switch(data.data[0].attribute) {
                             case 'DARK':
-                                attribute = `<img src='img/dark100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img class='pt-1 pb-1' src='img/dark100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'LIGHT':
-                                attribute = `<img src='img/light100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img class='pt-1 pb-1' src='img/light100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'WATER':
-                                attribute = `<img src='img/water100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img class='pt-1 pb-1' src='img/water100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'FIRE':
-                                attribute = `<img src='img/fire100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img class='pt-1 pb-1' src='img/fire100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'EARTH':
-                                attribute = `<img src='img/earth100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img class='pt-1 pb-1' src='img/earth100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'WIND':
-                                attribute = `<img src='img/wind100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img class='pt-1 pb-1' src='img/wind100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'DIVINE':
-                                attribute = `<img src='img/divine100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img class='pt-1 pb-1' src='img/divine100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                         }
 
@@ -337,8 +337,8 @@ function cardDetail(datae) {
                                 break;
                         }
 
-                        data.data[0].attribute ? attributeCard.innerHTML = `Attribut :   ${attribute}` : attributeCard.innerHTML = `Type : ${type}`;
-                        data.data[0].race ? typeCard.innerText = `Type : ${data.data[0].race}` : '';
+                        data.data[0].attribute ? attributeCard.innerHTML = `${attribute}` : attributeCard.innerHTML = `Type : ${type}`;
+                        data.data[0].race ? typeCard.innerText = `${data.data[0].race}` : '';
                         data.data[0].atk ? atkCard.innerText = `ATK : ${data.data[0].atk}` : atkCard.innerText = '';
                         data.data[0].atk == 0 ? atkCard.innerText = `ATK : ${data.data[0].atk}` : "";
                         data.data[0].def ? defCard.innerText = `DEF : ${data.data[0].def}` : defCard.innerText = '';
@@ -406,8 +406,35 @@ function cardTypeByLanguage(language){
             case "Rock" : 
                 typeCard = `Type : Rocher`;
                 break;
-            case "Fire" : 
+            case "Pyro" : 
                 typeCard = `Type : Feu`;
+                break;
+            case "Winged Beast" : 
+                typeCard = `Type : Bête Ailée`;
+                break;
+            case "Dinosaur" : 
+                typeCard = `Type : Dinosaure`;
+                break;
+            case "Fish" : 
+                typeCard = `Type : Poisson`;
+                break;
+            case "Beast" : 
+                typeCard = `Type : Bête`;
+                break;
+            case "Beast-Warrior" : 
+                typeCard = `Type : Bête-Guerrier`;
+                break;
+            case "Sea Serpent" : 
+                typeCard = `Type : Serpent de Mer`;
+                break;
+            case "Plant" : 
+                typeCard = `Type : Plante`;
+                break;
+            case "Insect" : 
+                typeCard = `Type : Insecte`;
+                break;
+            case "Thunder" : 
+                typeCard = `Type : Electrique`;
                 break;
         }
         return typeCard;
