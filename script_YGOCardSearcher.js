@@ -285,7 +285,7 @@ function cardDetail(datae) {
 
                         // Remplissage du modal contenant les informations de la carte sélectionnée pour plus d'informations
                         titleCard.innerText = data.data[0].name;
-                        cardDescriptor.innerHTML = `<u class='mt-3'>Description :</u><br>${data.data[0].desc}`;
+                        cardDescriptor.innerHTML = `<u class='mt-3 mb-3 font-weight-bold'>Description :</u><br>${data.data[0].desc}`;
                         
                         let cardOcg = ''; 
                         let cardTcg = '';
@@ -305,40 +305,136 @@ function cardDetail(datae) {
                         let attribute = '';
                         switch(data.data[0].attribute) {
                             case 'DARK':
-                                attribute = `<img class='pt-1 pb-1' src='img/dark100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img src='img/attribute_card/dark100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'LIGHT':
-                                attribute = `<img class='pt-1 pb-1' src='img/light100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img src='img/attribute_card/light100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'WATER':
-                                attribute = `<img class='pt-1 pb-1' src='img/water100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img src='img/attribute_card/water100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'FIRE':
-                                attribute = `<img class='pt-1 pb-1' src='img/fire100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img src='img/attribute_card/fire100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'EARTH':
-                                attribute = `<img class='pt-1 pb-1' src='img/earth100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img src='img/attribute_card/earth100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'WIND':
-                                attribute = `<img class='pt-1 pb-1' src='img/wind100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img src='img/attribute_card/wind100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                             case 'DIVINE':
-                                attribute = `<img class='pt-1 pb-1' src='img/divine100.png' alt='${data.data[0].attribute}'>`;
+                                attribute = `<img src='img/attribute_card/divine100.png' alt='${data.data[0].attribute}'>`;
                                 break;
                         }
 
                         let type = '';
                         switch(data.data[0].type) {
                             case 'Spell Card':
-                                type = `<img src='img/spell100.png' alt='${data.data[0].type}'>`;
+                                type = `<img src='img/attribute_card/spell100.png' alt='${data.data[0].type}'>`;
                                 break;
                             case 'Trap Card':
-                                type = `<img src='img/trap100.png' alt='${data.data[0].type}'>`;
+                                type = `<img src='img/attribute_cardattribute_card//trap100.png' alt='${data.data[0].type}'>`;
                                 break;
                         }
 
-                        data.data[0].attribute ? attributeCard.innerHTML = `${attribute}` : attributeCard.innerHTML = `Type : ${type}`;
-                        data.data[0].race ? typeCard.innerText = `${data.data[0].race}` : '';
+                        let race = '';
+                        switch(data.data[0].race){
+                            case 'Aqua':
+                                race = `<img src='img/type_card/icone_aqua.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Beast':
+                                race = `<img src='img/type_card/icone_bete.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Winged Beast':
+                                race = `<img src='img/type_card/icone_beteailee.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Beast-Warrior':
+                                race = `<img src='img/type_card/icone_beteguerrier.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Cyberse':
+                                race = `<img src='img/type_card/icone_cyberse.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Fiend':
+                                race = `<img src='img/type_card/icone_demon.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Dinosaur':
+                                race = `<img src='img/type_card/icone_dinosaure.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Dragon':
+                                race = `<img src='img/type_card/icone_dragon.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Fairy':
+                                race = `<img src='img/type_card/icone_elfe.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Pyro':
+                                race = `<img src='img/type_card/icone_feu.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Warrior':
+                                race = `<img src='img/type_card/icone_guerrier.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Insect':
+                                race = `<img src='img/type_card/icone_insecte.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Machine':
+                                race = `<img src='img/type_card/icone_machine.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Spellcaster':
+                                race = `<img src='img/type_card/icone_magicien.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Plant':
+                                race = `<img src='img/type_card/icone_plante.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Fish':
+                                race = `<img src='img/type_card/icone_poisson.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Psychic':
+                                race = `<img src='img/type_card/icone_psychique.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Reptile':
+                                race = `<img src='img/type_card/icone_reptile.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Rock':
+                                race = `<img src='img/type_card/icone_rocher.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Sea Serpent':
+                                race = `<img src='img/type_card/icone_serpentmer.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Thunder':
+                                race = `<img src='img/type_card/icone_tonnerre.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Wyrm':
+                                race = `<img src='img/type_card/icone_wyrm.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Zombie':
+                                race = `<img src='img/type_card/icone_zombie.jpg' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Divine-Beast':
+                                race = `<img src='img/type_card/icone_betedivine.png' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Continuous':
+                                race = `<img src='img/type_card/magie_continue.png' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Equip':
+                                race = `<img src='img/type_card/magie_equipement.png' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Quick-Play':
+                                race = `<img src='img/type_card/magie_jeurapide.png' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Ritual':
+                                race = `<img src='img/type_card/magie_rituel.png' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Field':
+                                race = `<img src='img/type_card/magie_terrain.png' alt='${data.data[0].race}'>`;
+                                break;
+                            case 'Counter':
+                                race = `<img src='img/type_card/piege_contre.png' alt='${data.data[0].race}'>`;
+                                break;
+                        }
+
+
+
+                        data.data[0].attribute ? attributeCard.innerHTML = `${attribute}` : attributeCard.innerHTML = `${type}`;
+                        data.data[0].race ? typeCard.innerHTML = `${race}` : '';
                         data.data[0].atk ? atkCard.innerText = `ATK : ${data.data[0].atk}` : atkCard.innerText = '';
                         data.data[0].atk == 0 ? atkCard.innerText = `ATK : ${data.data[0].atk}` : "";
                         data.data[0].def ? defCard.innerText = `DEF : ${data.data[0].def}` : defCard.innerText = '';
@@ -350,11 +446,11 @@ function cardDetail(datae) {
                         if(data.data[0].card_sets) {
                             cardPriceAndSet.innerHTML += '<ul>';
                             for(let set = 0; set < data.data[0].card_sets.length; set++) {
-                                cardPriceAndSet.innerHTML += `<li><strong class="text-warning">${data.data[0].card_sets[set].set_name}</strong> 
-                                ${data.data[0].card_sets[set].set_rarity_code} - ${data.data[0].card_sets[set].set_code} 
+                                cardPriceAndSet.innerHTML += `<li><strong class="text-warning text-uppercase">${data.data[0].card_sets[set].set_name}</strong> 
+                                - ${data.data[0].card_sets[set].set_rarity} - ${data.data[0].card_sets[set].set_code} 
                                 <br>Amazon : <strong>${data.data[0].card_prices[0].amazon_price}$</strong> - 
                                 CardMarket : <strong>${data.data[0].card_prices[0].cardmarket_price}$</strong> - 
-                                Ebay : <strong>${data.data[0].card_prices[0].ebay_price}$</strong></li><br>`;
+                                Ebay : <strong>${data.data[0].card_prices[0].ebay_price}$</strong></li><hr class="bg-success">`;
                             }
                             cardPriceAndSet.innerHTML += '</ul>';
                         } 

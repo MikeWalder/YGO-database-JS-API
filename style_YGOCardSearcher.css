@@ -116,9 +116,12 @@ input {
 }
 
 /* ----- Gestion des images de chaque résultat retourné et du hover ----- */
+.hovertexter > img {
+    transition: 0.4s ease-in-out;
+}
+
 .hovertexter > img:hover {
     transform: scale(1.07);
-    transition: transform 0.4s;
 }
 
 .hovertexter {
@@ -164,9 +167,10 @@ input {
 }
 
 .hovertexter:hover .hoverCardDescription {
-    bottom: 2%;
-    height: 22%;
-    transition: height 0.4s;
+    bottom: 1%;
+    max-height: 22%;
+    margin : auto 0;
+    transition: max-height 0.4s ease-in-out;
 }
 
 /* ------ Modal treatment section ------ */
@@ -188,6 +192,10 @@ input {
     min-width: 110px;
     padding: 10px 0px;
     margin: 10px 0px;
+}
+
+#typeCard img {
+    width: 40%;
 }
 
 #attributeCard img {
@@ -217,7 +225,7 @@ input {
 }
 
 #cardPriceAndSet {
-    font-size: 11px;
+    font-size: 12px;
     list-style-position: outside;
     padding: 0px;
 }
