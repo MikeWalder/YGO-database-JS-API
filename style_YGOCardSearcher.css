@@ -194,25 +194,31 @@ input {
     margin: 10px 0px;
 }
 
-#typeCard img {
-    width: 40%;
+#attributeCard img {
+    height: 40px;
+    margin : auto;
 }
 
-#attributeCard img {
-    width: 80%;
-    margin : auto;
+#typeCard img {
+    height: 50px;
+    margin: auto;
+    z-index: 2;
 }
 
 #cardImgDesc {
     width: 100%;
     border: 3px outset black;
+    transition: all 0.4s ease-in-out;
 }
 
 #cardImgDesc:hover {
     filter: grayscale(30%);
     -webkit-filter: grayscale(30%);
     transform: scale(1.05);
-    transition: filter 0.4s, transform 0.4s;;
+}
+
+#typeCardText {
+    font-size: 12px;
 }
 
 #borderer .row .bg-info, .limitator {
