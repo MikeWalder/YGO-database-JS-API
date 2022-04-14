@@ -121,7 +121,7 @@ input {
 }
 
 .hovertexter > img:hover {
-    transform: scale(1.07);
+    transform: scale(1.08);
 }
 
 .hovertexter {
@@ -195,14 +195,13 @@ input {
 }
 
 #attributeCard img {
-    height: 40px;
+    height: 35px;
     margin : auto;
 }
 
 #typeCard img {
-    height: 50px;
+    height: 45px;
     margin: auto;
-    z-index: 2;
 }
 
 #cardImgDesc {

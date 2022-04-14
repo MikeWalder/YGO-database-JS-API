@@ -13,12 +13,17 @@ const classCards = document.querySelector('#classCards');
 
 const modalTitle = document.querySelector('#exampleModalLabel');
 const labelTri = [...document.querySelectorAll('.modal_tri > label')];
+const btnModalTri = [...document.querySelectorAll('.modal_tri .btn')];
+console.log(btnModalTri);
 
 const labelTriEn = ['Card name', 'Level/Rank', 'ATK', 'DEF'];
 const labelTriFr = ['Nom carte', 'Niveau/Rang', 'ATK', 'DEF'];
 
 const triButtonsEn = ['A - Z', 'Z - A', 'Asc', 'Desc', 'Asc', 'Desc', 'Asc', 'Desc'];
 const triButtonsFr = ['A - Z', 'Z - A', 'Croissant', 'Décroissant', 'Croissant', 'Décroissant', 'Croissant', 'Décroissant'];
+
+const btnModalTriEn = ['A- Z', 'Z - A', 'Ascending', 'Descending', 'Ascending', 'Descending', 'Ascending', 'Descending'];
+const btnModalTriFr = ['A - Z', 'Z - A', 'Ordre croissant', 'Ordre décroissant', 'Ordre croissant', 'Ordre décroissant', 'Ordre croissant', 'Ordre décroissant'];
 
 let cardDescription = '';
 
@@ -40,7 +45,7 @@ language.addEventListener('click', function() {
         for(let tp=0; tp<typeCardsNavbar.length; tp++){
             typeCardsNavbar[tp].innerText = typesTextEnNavbar[tp];
         }
-        modalTitle.innerText = 'Sorting';
+        modalTitle.innerText = 'Sort';
         for(let lT=0; lT<labelTri.length; lT++) {
             labelTri[lT].innerText = labelTriEn[lT];
         }
@@ -48,6 +53,10 @@ language.addEventListener('click', function() {
         for(let lb = (labelTri.length - 1); lb >= 0; lb--){
             labelTriTab[2*lb+1] = labelTriTab[2*lb] = labelTriEn[lb]; 
         }
+        for(let btnCount = 0; btnCount<btnModalTri.length; btnCount++){
+            btnModalTri[btnCount].innerText = btnModalTriEn[btnCount];
+        }
+
         dataOrder.innerText = 'Order : ';
         orderText = dataOrder.innerText.substr(0, 7);
         dataResult.innerText = 'Results : ';
@@ -68,8 +77,11 @@ language.addEventListener('click', function() {
         for(let lb = (labelTri.length - 1); lb >= 0; lb--){
             labelTriTab[2*lb+1] = labelTriTab[2*lb] = labelTriFr[lb]; 
         }
+        for(let btnCount=0; btnCount<btnModalTri.length; btnCount++){
+            btnModalTri[btnCount].innerText = btnModalTriFr[btnCount];
+        }
 
-        console.log(labelTriTab);
+        //console.log(labelTriTab);
         dataOrder.innerText = 'Ordre : ';
         orderText = dataOrder.innerText.substr(0, 7);
         dataResult.innerText = 'Résultats : ';
@@ -128,10 +140,10 @@ banList[2].addEventListener('click', function() {
 
 
 /* ----- Classement dans le modal de tri des cartes ----- */
-const cardTri = [...document.querySelectorAll('.modal_tri div > button')];
+const cardTriBtn = [...document.querySelectorAll('.modal_tri div > button')];
 let orderTri = '';
-for(let cardN = 0; cardN < cardTri.length; cardN++) {
-    cardTri[cardN].addEventListener('focus', function() {
+for(let cardN = 0; cardN < cardTriBtn.length; cardN++) {
+    cardTriBtn[cardN].addEventListener('focus', function() {
         orderTri = this.value;
         dataOrder.innerText = 'Ordre :';
         dataOrder.innerText += ` ${labelTriTab[cardN]} (${triButtons[cardN]})`;
