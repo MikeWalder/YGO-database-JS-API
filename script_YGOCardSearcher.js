@@ -25,6 +25,8 @@ const triButtonsFr = ['A - Z', 'Z - A', 'Croissant', 'Décroissant', 'Croissant'
 const btnModalTriEn = ['A- Z', 'Z - A', 'Ascending', 'Descending', 'Ascending', 'Descending', 'Ascending', 'Descending'];
 const btnModalTriFr = ['A - Z', 'Z - A', 'Ordre croissant', 'Ordre décroissant', 'Ordre croissant', 'Ordre décroissant', 'Ordre croissant', 'Ordre décroissant'];
 
+const closeModal = document.querySelector('#closeModal');
+
 let cardDescription = '';
 
 /* ----- Gestion de la langue ----- */
@@ -57,6 +59,7 @@ language.addEventListener('click', function() {
             btnModalTri[btnCount].innerText = btnModalTriEn[btnCount];
         }
 
+        closeModal.innerText = 'Close';
         dataOrder.innerText = 'Order : ';
         orderText = dataOrder.innerText.substr(0, 7);
         dataResult.innerText = 'Results : ';
@@ -82,6 +85,7 @@ language.addEventListener('click', function() {
         }
 
         //console.log(labelTriTab);
+        closeModal.innerText = 'Fermer';
         dataOrder.innerText = 'Ordre : ';
         orderText = dataOrder.innerText.substr(0, 7);
         dataResult.innerText = 'Résultats : ';
@@ -355,123 +359,127 @@ function cardDetail(datae) {
                         switch(data.data[0].race){
                             case 'Aqua':
                                 race = `<img src='img/type_card/icone_aqua.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Beast':
                                 race = `<img src='img/type_card/icone_bete.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Winged Beast':
                                 race = `<img src='img/type_card/icone_beteailee.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Beast-Warrior':
                                 race = `<img src='img/type_card/icone_beteguerrier.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Cyberse':
                                 race = `<img src='img/type_card/icone_cyberse.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Fiend':
                                 race = `<img src='img/type_card/icone_demon.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Dinosaur':
                                 race = `<img src='img/type_card/icone_dinosaure.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Dragon':
                                 race = `<img src='img/type_card/icone_dragon.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Fairy':
                                 race = `<img src='img/type_card/icone_elfe.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Pyro':
                                 race = `<img src='img/type_card/icone_feu.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Warrior':
                                 race = `<img src='img/type_card/icone_guerrier.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Insect':
                                 race = `<img src='img/type_card/icone_insecte.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Machine':
                                 race = `<img src='img/type_card/icone_machine.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Spellcaster':
                                 race = `<img src='img/type_card/icone_magicien.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Plant':
                                 race = `<img src='img/type_card/icone_plante.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Fish':
                                 race = `<img src='img/type_card/icone_poisson.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Psychic':
                                 race = `<img src='img/type_card/icone_psychique.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Reptile':
                                 race = `<img src='img/type_card/icone_reptile.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Rock':
                                 race = `<img src='img/type_card/icone_rocher.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Sea Serpent':
                                 race = `<img src='img/type_card/icone_serpentmer.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Thunder':
                                 race = `<img src='img/type_card/icone_tonnerre.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Wyrm':
                                 race = `<img src='img/type_card/icone_wyrm.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Zombie':
                                 race = `<img src='img/type_card/icone_zombie.jpg' alt='${data.data[0].race}'>`;
-                                taceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                taceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Divine-Beast':
                                 race = `<img src='img/type_card/icone_betedivine.png' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Continuous':
                                 race = `<img src='img/type_card/magie_continue.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Equip':
                                 race = `<img src='img/type_card/magie_equipement.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Quick-Play':
                                 race = `<img src='img/type_card/magie_jeurapide.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Ritual':
                                 race = `<img src='img/type_card/magie_rituel.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Field':
                                 race = `<img src='img/type_card/magie_terrain.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Counter':
                                 race = `<img src='img/type_card/piege_contre.jpg' alt='${data.data[0].race}'>`;
-                                raceText = `<span class='mt-3'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
+                                break;
+                            case 'Normal':
+                                race = ``;
+                                raceText = `<span class='mt-3'> - </span>`;
                                 break;
                         }
 
@@ -480,7 +488,7 @@ function cardDetail(datae) {
                         data.data[0].attribute ? attributeCard.innerHTML = `${attribute}` : attributeCard.innerHTML = `${type}`;
                         data.data[0].race ? typeCard.innerHTML = `${race}` : '';
                         data.data[0].race ? typeCardText.innerHTML = `${raceText}` : '';
-                        data.data[0].atk ? atkCard.innerText = `ATK : ${data.data[0].atk}` : atkCard.innerText = " - ";
+                        data.data[0].atk ? atkCard.innerHTML = `ATK : ${data.data[0].atk}` : atkCard.innerHTML = " - ";
                         data.data[0].atk == 0 ? atkCard.innerText = `ATK : ${data.data[0].atk}` : " - ";
                         data.data[0].def ? defCard.innerText = `DEF : ${data.data[0].def}` : defCard.innerText = " - ";
                         data.data[0].def == 0 ? defCard.innerText = `DEF : ${data.data[0].def}` : " - ";
