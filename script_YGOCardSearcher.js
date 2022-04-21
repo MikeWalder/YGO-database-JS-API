@@ -314,9 +314,9 @@ function cardDetail(datae) {
                             cardTcg = cardBanListFormat(cardTcg);
                         }
 
-                        data.data[0].banlist_info ? cardLimitation.innerHTML = `OCG : <span class="bolder">${cardOcg}</span> 
-                        <br>TCG : &nbsp;<span class="bolder">${cardTcg}</span>` : 
-                        cardLimitation.innerHTML = `OCG - TCG : <span class="bolder">${carDescNoLimited}</span>`;
+                        data.data[0].banlist_info ? cardLimitation.innerHTML = `<div class="text-center">OCG : <span class="bolder">${cardOcg}</span> 
+                        <br>TCG : &nbsp;<span class="bolder">${cardTcg}</span></div>` : 
+                        cardLimitation.innerHTML = `<div class="text-center">OCG - TCG : <span class="bolder">${carDescNoLimited}</span></div>`;
 
                         // Traitement de l'icône d'attribut / type au modal de description de la carte
                         let attribute = '';

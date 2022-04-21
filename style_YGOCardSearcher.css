@@ -207,14 +207,14 @@ input {
 #cardImgDesc {
     width: 100%;
     border: 3px outset black;
-    transition: all 0.4s ease-in-out;
+    transform: scale(1.04);
 }
 
-#cardImgDesc:hover {
+/* #cardImgDesc:hover {
     filter: grayscale(30%);
     -webkit-filter: grayscale(30%);
     transform: scale(1.05);
-}
+} */
 
 #typeCardText {
     font-size: 12px;
@@ -237,7 +237,7 @@ input {
 
 .priceBanList {
     overflow: auto;
-    max-height: 10em;
+    max-height: 12em;
 }
 
 #formatBan > button {
