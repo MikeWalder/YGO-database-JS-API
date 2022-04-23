@@ -279,6 +279,7 @@ function cardDetail(datae) {
     const archeType = document.querySelector('#archeType');
     const iD_Card = document.querySelector('#iD_Card');
     const attributeCard = document.querySelector('#attributeCard');
+    const attributeCardText = document.querySelector('#attributeCardText');
     const typeCard = document.querySelector('#typeCard');
     const typeCardText = document.querySelector('#typeCardText');
     /* const cardPrice = document.querySelector('#cardPrice'); */
@@ -323,34 +324,44 @@ function cardDetail(datae) {
                         switch(data.data[0].attribute) {
                             case 'DARK':
                                 attribute = `<img src='img/attribute_card/dark100.png' alt='${data.data[0].attribute}'>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
                                 break;
                             case 'LIGHT':
                                 attribute = `<img src='img/attribute_card/light100.png' alt='${data.data[0].attribute}'>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
                                 break;
                             case 'WATER':
                                 attribute = `<img src='img/attribute_card/water100.png' alt='${data.data[0].attribute}'>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
                                 break;
                             case 'FIRE':
                                 attribute = `<img src='img/attribute_card/fire100.png' alt='${data.data[0].attribute}'>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
                                 break;
                             case 'EARTH':
                                 attribute = `<img src='img/attribute_card/earth100.png' alt='${data.data[0].attribute}'>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
                                 break;
                             case 'WIND':
                                 attribute = `<img src='img/attribute_card/wind100.png' alt='${data.data[0].attribute}'>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
                                 break;
                             case 'DIVINE':
                                 attribute = `<img src='img/attribute_card/divine100.png' alt='${data.data[0].attribute}'>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
                                 break;
                         }
 
                         let type = '';
+                        let typeText = '';
                         switch(data.data[0].type) {
                             case 'Spell Card':
                                 type = `<img src='img/attribute_card/spell100.png' alt='${data.data[0].type}'>`;
+                                typeText = `<span class='mt-3 font-weight-bold'>${data.data[0].type.toUpperCase()}</span>`;
                                 break;
                             case 'Trap Card':
                                 type = `<img src='img/attribute_card//trap100.png' alt='${data.data[0].type}'>`;
+                                typeText = `<span class='mt-3 font-weight-bold'>${data.data[0].type.toUpperCase()}</span>`;
                                 break;
                         }
 
@@ -486,6 +497,7 @@ function cardDetail(datae) {
 
 
                         data.data[0].attribute ? attributeCard.innerHTML = `${attribute}` : attributeCard.innerHTML = `${type}`;
+                        data.data[0].attribute ? attributeCardText.innerHTML = `${attributeText}` : attributeCardText.innerHTML = `${typeText}`;
                         data.data[0].race ? typeCard.innerHTML = `${race}` : '';
                         data.data[0].race ? typeCardText.innerHTML = `${raceText}` : '';
                         data.data[0].atk ? atkCard.innerHTML = `ATK : ${data.data[0].atk}` : atkCard.innerHTML = " - ";
