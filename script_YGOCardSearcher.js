@@ -40,6 +40,7 @@ for(let lb = (labelTri.length - 1); lb >= 0; lb--){
 }
 let carDescNoLimited = 'Illimité';
 
+// Language switching and modify text in some elements  
 language.addEventListener('click', function() {
     if(language.innerText === 'FR') {
         language.innerText = 'EN';
@@ -84,7 +85,6 @@ language.addEventListener('click', function() {
             btnModalTri[btnCount].innerText = btnModalTriFr[btnCount];
         }
 
-        //console.log(labelTriTab);
         closeModal.innerText = 'Fermer';
         dataOrder.innerText = 'Ordre : ';
         orderText = dataOrder.innerText.substr(0, 7);
@@ -143,7 +143,7 @@ banList[2].addEventListener('click', function() {
 })
 
 
-/* ----- Classement dans le modal de tri des cartes ----- */
+/* ----- Classement des cartzs dans le modal de tri ----- */
 const cardTriBtn = [...document.querySelectorAll('.modal_tri div > button')];
 let orderTri = '';
 for(let cardN = 0; cardN < cardTriBtn.length; cardN++) {
@@ -167,6 +167,7 @@ inputValue.addEventListener('keyup', function(e) {
 
 /* ------------------------------------------- */
 /* ________________ Fonctions ________________ */
+/* ------------------------------------------- */
 
 function searchCardsData(data, titleBan) {
     // Initialisation des variables
@@ -237,6 +238,7 @@ function searchCardsData(data, titleBan) {
 
     }
 }
+
 
 function gestionUrletStatus() {
     let nb = '';
@@ -317,56 +319,59 @@ function cardDetail(datae) {
 
                         data.data[0].banlist_info ? cardLimitation.innerHTML = `<div class="text-center">OCG : <span class="bolder">${cardOcg}</span> 
                         <br>TCG : &nbsp;<span class="bolder">${cardTcg}</span></div>` : 
-                        cardLimitation.innerHTML = `<div class="text-center">OCG - TCG : <span class="bolder">${carDescNoLimited}</span></div>`;
+                        cardLimitation.innerHTML = `<div class="">OCG - TCG : <span class="bolder">${carDescNoLimited}</span></div>`;
 
                         // Traitement de l'icône d'attribut / type au modal de description de la carte
                         let attribute = '';
                         switch(data.data[0].attribute) {
                             case 'DARK':
                                 attribute = `<img src='img/attribute_card/dark100.png' alt='${data.data[0].attribute}'>`;
-                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute}</span>`;
                                 break;
                             case 'LIGHT':
                                 attribute = `<img src='img/attribute_card/light100.png' alt='${data.data[0].attribute}'>`;
-                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute}</span>`;
                                 break;
                             case 'WATER':
                                 attribute = `<img src='img/attribute_card/water100.png' alt='${data.data[0].attribute}'>`;
-                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute}</span>`;
                                 break;
                             case 'FIRE':
                                 attribute = `<img src='img/attribute_card/fire100.png' alt='${data.data[0].attribute}'>`;
-                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute}</span>`;
                                 break;
                             case 'EARTH':
                                 attribute = `<img src='img/attribute_card/earth100.png' alt='${data.data[0].attribute}'>`;
-                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute}</span>`;
                                 break;
                             case 'WIND':
                                 attribute = `<img src='img/attribute_card/wind100.png' alt='${data.data[0].attribute}'>`;
-                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute}</span>`;
                                 break;
                             case 'DIVINE':
                                 attribute = `<img src='img/attribute_card/divine100.png' alt='${data.data[0].attribute}'>`;
-                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute.toUpperCase()}</span>`;
+                                attributeText = `<span class='mt-3 font-weight-bold'>${data.data[0].attribute}</span>`;
                                 break;
                         }
 
                         let type = '';
                         let typeText = '';
+                        // Case handling for spell and trap cards
                         switch(data.data[0].type) {
                             case 'Spell Card':
                                 type = `<img src='img/attribute_card/spell100.png' alt='${data.data[0].type}'>`;
-                                typeText = `<span class='mt-3 font-weight-bold'>${data.data[0].type.toUpperCase()}</span>`;
+                                typeText = `<span class='mt-3 font-weight-bold'>${data.data[0].type.substring(0, 5)}</span>`;
                                 break;
                             case 'Trap Card':
                                 type = `<img src='img/attribute_card//trap100.png' alt='${data.data[0].type}'>`;
-                                typeText = `<span class='mt-3 font-weight-bold'>${data.data[0].type.toUpperCase()}</span>`;
+                                typeText = `<span class='mt-3 font-weight-bold'>${data.data[0].type.substring(0, 4)}</span>`;
                                 break;
                         }
 
                         let race = '';
                         let raceText = '';
+
+                        // Case handling for race monster cards
                         switch(data.data[0].race){
                             case 'Aqua':
                                 race = `<img src='img/type_card/icone_aqua.jpg' alt='${data.data[0].race}'>`;
@@ -458,12 +463,14 @@ function cardDetail(datae) {
                                 break;
                             case 'Zombie':
                                 race = `<img src='img/type_card/icone_zombie.jpg' alt='${data.data[0].race}'>`;
-                                taceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
+                                raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
                             case 'Divine-Beast':
                                 race = `<img src='img/type_card/icone_betedivine.png' alt='${data.data[0].race}'>`;
                                 raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
                                 break;
+
+                            // Other cases (spell/trap type, and normal monster cards)
                             case 'Continuous':
                                 race = `<img src='img/type_card/magie_continue.jpg' alt='${data.data[0].race}'>`;
                                 raceText = `<span class='mt-3 font-weight-bold'>${data.data[0].race}</span>`;
@@ -494,8 +501,7 @@ function cardDetail(datae) {
                                 break;
                         }
 
-
-
+                        // Fill all the card's informations inside modal elements (if not, it remains empty)
                         data.data[0].attribute ? attributeCard.innerHTML = `${attribute}` : attributeCard.innerHTML = `${type}`;
                         data.data[0].attribute ? attributeCardText.innerHTML = `${attributeText}` : attributeCardText.innerHTML = `${typeText}`;
                         data.data[0].race ? typeCard.innerHTML = `${race}` : '';
@@ -508,6 +514,8 @@ function cardDetail(datae) {
                         data.data[0].id ? iD_Card.innerText = `ID : ${data.data[0].id}` : iD_Card.innerText = '';
                         
                         cardPriceAndSet.innerHTML = '';
+
+                        // handling card price informations inside modal element
                         if(data.data[0].card_sets) {
                             cardPriceAndSet.innerHTML += '<ul>';
                             for(let set = 0; set < data.data[0].card_sets.length; set++) {
@@ -596,6 +604,9 @@ function cardTypeByLanguage(language){
                 break;
             case "Thunder" : 
                 typeCard = `Type : Electrique`;
+                break;
+            case "Zombie" : 
+                typeCard = `Type : Zombie`;
                 break;
         }
         return typeCard;

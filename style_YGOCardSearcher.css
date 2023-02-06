@@ -207,14 +207,12 @@ input {
 #cardImgDesc {
     width: 100%;
     border: 3px outset black;
-    transform: scale(1.04);
+    transition: all 0.4s ease-in-out;
 }
 
-/* #cardImgDesc:hover {
-    filter: grayscale(30%);
-    -webkit-filter: grayscale(30%);
-    transform: scale(1.05);
-} */
+#cardImgDesc:hover {
+    transform: scale(1.04);
+}
 
 #typeCardText {
     font-size: 12px;

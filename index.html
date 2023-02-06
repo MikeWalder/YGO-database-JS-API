@@ -32,33 +32,33 @@
                 <div class="col-xs-12 col-sm-9">
                     <div class="row">
 
-                        <div class="input-group mb-1 mt-2 col-9">
-                            <input type="text" id="inputValue" class="form-control" value="" placeholder="Saisissez un nom de carte ou un mot-clé"><br>
+                        <div class="input-group my-3 col-8">
+                            <input type="text" id="inputValue" class="form-control p-4" value="" placeholder="Saisissez un nom de carte ou un mot-clé"><br>
                         </div>
 
-                        <div class="col-3 mb-1 mt-2">
+                        <div class="col-4 my-3">
                             <div class="row text-center">
                                 <div class="col-6">
                                     <i class="fas fa-sort-amount-down fa-lg mt-2" 
                                     id="classCards" data-toggle="modal" data-target="#exampleModal" title="Trier"></i>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <i class="fas fa-search fa-lg mt-2"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-9">
+                        <div class="col-8 mb-3">
                             <p class="results" id="dataOrder">Ordre : -</p>
                             <p class="results" id="dataResult">Résultats : -</p>
                         </div>
 
-                        <div class="col-3 mt-2">
+                        <div class="col-4 mb-3">
                             <div class="row text-center">
                                 <div class="col-6">
                                     <i class="fas fa-ban fa-lg" data-toggle="modal" data-target="#modalBanList" title="Banlist" id="banList"></i>
                                 </div>
-                                <div class="col-4 text-white">
+                                <div class="col-6 text-white">
                                     <div id="language" class="font-weight-bold">FR</div>
                                 </div>
                             </div>
@@ -77,28 +77,35 @@
 
         <div class="container-fluid bg-lightdark text-white">
             <div class="row text-center" id="typeCartes">
+
                 <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="type=pendulum%20effect%20monster,pendulum%20normal%20monster,normal%20monster,effect%20monster,flip%20effect%20monster,normal%20tuner%20monster,tuner%20monster,ritual%20monster,ritual%20effect%20monster,spirit%20monster,toon%20monster,union%20effect%20monster">
                         Monstres Main
                     </button>
                 </div>
+
                 <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="type=fusion%20monster,link%20monster,pendulum%20effect%20fusion%20monster,synchro%20monster,synchro%20pendulum%20effect%20monster,synchro%20tuner%20monster,xyz%20monster,xyz%20pendulum%20effect%20monster">
-                        Monstres Side
+                        Extra Deck
                     </button>
                 </div>
+
                 <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="">Tous</button>
                 </div>
+
                 <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="type=spell%20card">Magie</button>
                 </div>
+
                 <div class="d-none d-sm-block col-2 tri">
                     <button type="button" class="btn btn-outline-primary" value="type=trap%20card">Piège</button>
                 </div>
+
                 <div class="d-none d-sm-block col-2 tri">
-                    <button type="button" class="btn btn-outline-primary" value="type=skill%20card">Skill</button>
+                    <button type="button" class="btn btn-outline-primary" value="type=skill%20card">Skill (Speed Duel)</button>
                 </div>
+
             </div>
         </div>
         <hr class="division">
@@ -127,20 +134,20 @@
                     <br>
                     <label for="level" class="pt-3">Niveau/Rang </label>
                     <div id="cLR">
-                        <button type="button" name="level" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=asc">Ordre croissant</button>
-                        <button type="button" name="level" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=desc">Ordre décroissant</button>
+                        <button type="button" name="level" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=asc">Croissant</button>
+                        <button type="button" name="level" class="btn btn-info cardLevelRank" value="&sort=level&sortorder=desc">Décroissant</button>
                     </div>
                     <br>
                     <label for="atk" class="pt-3">ATK </label>
                     <div id="cATK">
-                        <button type="button" name="atk" class="btn btn-info cardAtk" value="&sort=atk&sortorder=asc">Ordre croissant</button>
-                        <button type="button" name="atk" class="btn btn-info cardAtk" value="&sort=atk&sortorder=desc">Ordre décroissant</button>
+                        <button type="button" name="atk" class="btn btn-info cardAtk" value="&sort=atk&sortorder=asc">Croissant</button>
+                        <button type="button" name="atk" class="btn btn-info cardAtk" value="&sort=atk&sortorder=desc">Décroissant</button>
                     </div>
                     <br>
                     <label for="def" class="pt-3">DEF </label>
                     <div id="cDEF">
-                        <button type="button" name="def" class="btn btn-info cardDef" value="&sort=def&sortorder=asc">Ordre croissant</button>
-                        <button type="button" name="def" class="btn btn-info cardDef" value="&sort=def&sortorder=desc">Ordre décroissant</button>
+                        <button type="button" name="def" class="btn btn-info cardDef" value="&sort=def&sortorder=asc">Croissant</button>
+                        <button type="button" name="def" class="btn btn-info cardDef" value="&sort=def&sortorder=desc">Décroissant</button>
                     </div>
                     <br>
                 </div>
@@ -176,7 +183,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content bg-dark text-white">
                 <div class="modal-header">
-                    <h5 class="modal-title pl-md-3" id="titleCard"></h5>
+                    <h5 class="modal-title pl-md-4" id="titleCard"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="text-white">&times;</span>
                     </button>
@@ -185,6 +192,7 @@
                     <div class="container-fluid">
                         <div class="row pt-2">
                             <div class="col-sm-7 col-md-5 m-0">
+
                                 <div class="col-12">
                                     <img src="" alt="" id="cardImgDesc">
                                 </div>
@@ -206,7 +214,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row mt-2 pb-2">
+                                <div class="row mt-2 pb-0">
                                     <div class="col-1"></div>
                                     <div class="col-5 bg-info limitator">
                                         <div id="atkCard"></div>
@@ -221,18 +229,10 @@
                                 </div>
 
                             </div>
-                            <div class="col-sm-5 col-md-7" id="borderer">
-                                
-                                <!-- <div class="row pb-2">
-                                    <div class="col-6 bg-info">
-                                        <div id="atkCard"></div>
-                                    </div>
-                                    <div class="col-6 bg-info">
-                                        <div id="defCard"></div>
-                                    </div>
-                                </div> -->
 
-                                <div class="row pb-2">
+                            <div class="col-sm-5 col-md-7" id="borderer">
+
+                                <div class="row pb-0">
                                     <div class="col-6 bg-info">
                                         <div id="archeType"></div>
                                     </div>
@@ -241,11 +241,12 @@
                                     </div>
                                 </div>
 
-                                <div class="row pb-2">
+                                <div class="row pb-0">
                                     <div class="col-12 bg-info">
                                         <div class="modal-text" id="cardDescriptor"></div>
                                     </div>
                                 </div>
+
                                 <div class="row priceBanList">
                                     <div class="col-12 bg-info">
                                         <div class="text-center setsCardSelected h4">
@@ -255,13 +256,16 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="modal-footer mx-auto">
                     <button type="button" id="closeModal" class="btn btn-secondary btn-lg pl-5 pr-5" data-dismiss="modal">Fermer</button>
                 </div>
+
             </div>
         </div>
     </div>
